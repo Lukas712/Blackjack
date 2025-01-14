@@ -4,7 +4,11 @@ public class Baralho
 {
     private int[] cartas;
 
-    public int getCarta(){return 0;}
+    Baralho()
+    {
+        cartas = new int[11];
+    }
+    public int[] getCarta(){return cartas;}
     public void insereCarta(int carta){return;}
     private void embaralhaCartas(){return;}
 }
