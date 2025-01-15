@@ -13,6 +13,7 @@ public abstract class Jogador
         maoJogador = new List<int>();
         pontosDeVida = 10;
         betAtual = 0;
+        
     }
     public int getBet(){return betAtual;}
     public void setBet(int val){betAtual = val;}
@@ -25,8 +26,9 @@ public abstract class Jogador
 
     public void insereInventario(Trunfo trunfo){inventario.Add(trunfo);}
 
-    public void insereCarta(){}
+    public void insereCarta(int val){}
 
+    public void removeCarta(int val){}
     public abstract void passarVez();
     public abstract void comprarCarta();
 

@@ -1,14 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Baralho
 {
-    private int[] cartas;
+    private List<int> cartas;
 
     Baralho()
     {
-        cartas = new int[11];
+        cartas = new List<int>();
+        for(int i = 1; i<=11; i+=1)
+        {
+            cartas.Add(i);
+        }
     }
-    public int[] getCarta(){return cartas;}
+    public List<int> getCarta(){return cartas;}
     public void insereCarta(int carta){return;}
+
+    public int removeCarta(int carta){
+        cartas.Remove(carta);
+        return carta;
+        }
     private void embaralhaCartas(){return;}
 }
