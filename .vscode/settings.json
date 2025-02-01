@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Blackjack.sln"
+    "dotnet.defaultSolution": "Blackjack.sln",
+    "dotnet.preferCSharpExtension": true
 }
