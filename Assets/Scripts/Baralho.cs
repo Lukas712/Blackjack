@@ -3,22 +3,36 @@ using UnityEngine;
 
 public class Baralho
 {
-    private List<int> cartas;
+    private List<Cartas> cartas;
 
-    Baralho()
+    public Baralho()
     {
-        cartas = new List<int>();
-        for(int i = 1; i<=11; i+=1)
-        {
-            cartas.Add(i);
-        }
-    }
-    public List<int> getCarta(){return cartas;}
-    public void insereCarta(int carta){return;}
+        cartas = new List<Cartas>();
+        string[] naipes = { "Copas", "Espadas", "Ouros", "Paus" };
+        string[] valores = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
-    public int removeCarta(int carta){
-        cartas.Remove(carta);
-        return carta;
+        foreach (string naipe in naipes)
+        {
+            foreach (string valor in valores)
+            {
+                cartas.Add(new Cartas(naipe, valor));
+            }
         }
-    private void embaralhaCartas(){return;}
+
+        EmbaralhaCartas();
+    }
+
+    public void EmbaralhaCartas()
+    {
+        cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
+    }
+
+    public Cartas CompraCarta()
+    {
+        if (cartas.Count == 0) return null;
+
+        Cartas carta = cartas[0];
+        cartas.RemoveAt(0);
+        return carta;
+    }
 }
