@@ -8,6 +8,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject trunfoPrefab;
     [SerializeField] private TextMeshProUGUI txt;
+    [SerializeField] private Transform posinit;
+    [SerializeField] private Transform posinitp2;
+    [SerializeField] private Transform posTrunfo;
+    [SerializeField] private Transform posTrunfo2;
+
+    [SerializeField] private GameObject Cartas;
+    private GameObject[] CartasPrefab;
+    private float xmeia;
 
     private Jogador player1;
     private Jogador player2;
@@ -18,88 +26,42 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        baralho = new Baralho(); 
-        player1 = new Jogador(baralho);
-        player2 = new Jogador(baralho);
+        xmeia = posinit.position.x / 2;
+        baralho = new Baralho();
+        player1 = new Jogador();
+        player2 = new Jogador();
+        for (int i = 0; i < 4; i++)
+        {
+            player1.comprarCarta(baralho);
+            player2.comprarCarta(baralho);
+        }
         turn = 0;
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
+        desenhaTela(player1, posinit.transform, posTrunfo);
+        desenhaTela(player2, posinitp2.transform, posTrunfo2);
+
         inventoryPanel.SetActive(false);
         metaJogo = 21;
     }
 
     void Update()
     {
-        player1.calculaMao();
-        player2.calculaMao();
-        if(contaPasse != 2)
+        Jogador atual = (turn == 0 ? player1 : player2);
+        if (atual.abrirInventario())
         {
-            Jogador atual = (turn == 0 ? player1 : player2);
-
-            if (atual.abrirInventario())
-            {
-                ToggleInventory(atual);
-            }
-            if (atual.comprarCarta(baralho))
-            {
-                contaPasse = 0;
-                
-            }
-            if (atual.passarVez())
-            {
-                
-                if(inventoryPanel.activeSelf)
-                {
-                    ToggleInventory(atual);
-                }
-                passarVez(atual);
-                contaPasse+=1;
-            }
+            ToggleInventory(atual);
         }
-        else
+        if (atual.comprarCarta(baralho))
         {
-            int somaPlayer1 = metaJogo-player1.getSoma();
-            int somaPlayer2 = metaJogo-player2.getSoma();
-
-            if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
-            {
-                if (somaPlayer1 < somaPlayer2)
-                {
-                    txt.text = "Vencedor foi o jogador 1";
-                }
-                else if (somaPlayer1 > somaPlayer2)
-                {
-                    txt.text = "Vencedor foi o jogador 2";
-                }
-                else
-                {
-                    txt.text = "Empate";
-                }
-            }
-            else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
-            {
-                txt.text = "Vencedor foi o jogador 2";
-            }
-            else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
-            {
-                txt.text = "Vencedor foi o jogador 1";
-            }
-            else
-            {
-                if (somaPlayer1 > somaPlayer2)
-                {
-                    txt.text = "Vencedor foi o jogador 1";
-                }
-                else if (somaPlayer1 < somaPlayer2)
-                {
-                    txt.text = "Vencedor foi o jogador 2";
-                }
-                else
-                {
-                    txt.text = "Empate";
-                }
-            }
+            Debug.Log("Carta Comprada");
         }
+        if (atual.passarVez())
+        {
+            Debug.Log("Vez Passada");
+            passarVez(atual);
+        }
+
     }
 
     public void ToggleInventory(Jogador atual)
@@ -107,7 +69,7 @@ public class GameController : MonoBehaviour
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
 
-        if (!isActive) 
+        if (!isActive)
         {
             AtualizarInventario(atual);
         }
@@ -136,15 +98,15 @@ public class GameController : MonoBehaviour
 
 
     void LimparInventario()
-{
-    if (inventoryPanel != null)
     {
-        foreach (Transform child in inventoryPanel.transform)
+        if (inventoryPanel != null)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in inventoryPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
-}
 
 
     void passarVez(Jogador atual)
@@ -153,5 +115,24 @@ public class GameController : MonoBehaviour
         txt.text = "Seu Turno ";
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         atual = (turn == 0 ? player1 : player2);
+    }
+
+
+
+    void desenhaTela(Jogador player, Transform pRef, Transform pTrunfo)
+    {
+        Debug.Log("Entrou " + player.getMaoJogador().Count + 1);
+        for (int i = 0; i < player.getMaoJogador().Count + 1; i++)
+        {
+            GameObject carta = Instantiate(Cartas, pRef.position + new Vector3(i * 0.1f + xmeia + xmeia, -0.95f, 0), Quaternion.identity);
+            CartaController cscript = carta.GetComponent<CartaController>();
+            cscript.setSprite(1);
+        }
+
+
+
+
+
+
     }
 }

@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4976070993133363909}
-  - component: {fileID: 8460436804359792755}
   - component: {fileID: -436611149535324330}
-  - component: {fileID: 6313816988290220886}
-  - component: {fileID: 2689509654767641918}
-  - component: {fileID: -6968155746348453548}
+  - component: {fileID: 7107542778684051919}
+  - component: {fileID: 5107659221194617462}
+  - component: {fileID: 1625921140498188370}
   m_Layer: 0
-  m_Name: Carta 7
+  m_Name: Cartas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,24 +30,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8460436804359792755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273782951979237701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2485487186aa45a4a909a1f416d0d141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nome: 
 --- !u!212 &-436611149535324330
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 514431684173208308, guid: 0ccad8c41f489724b9898bcdbf6f1025, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,10 +87,10 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6313816988290220886
+--- !u!61 &7107542778684051919
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +136,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.48, y: 0.64}
   m_EdgeRadius: 0
---- !u!50 &2689509654767641918
+--- !u!50 &5107659221194617462
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -177,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6968155746348453548
+--- !u!114 &1625921140498188370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,3 +175,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e82309d1c799545bc0c1ff764f05b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standby: 0
+  sprites:
+  - {fileID: 2864532502426238966, guid: 25b8c374fa9404040abe34cb2c64a5e6, type: 3}
+  - {fileID: -298535019011319213, guid: 0c6cf7ad59fb59a40a04b54e4d3e406a, type: 3}
+  - {fileID: -90417635193365225, guid: 6356976708b3a2249af4596f46b99fc6, type: 3}
+  - {fileID: -4603969770871622718, guid: 7a8c860e02dd67a4290b2692c2029b91, type: 3}
+  - {fileID: 7333440297431438183, guid: bf921fa129dbb2b4ba29f022ccd89c0e, type: 3}
+  - {fileID: 5375884276819726375, guid: 5dcccf7cf21ff6e4986f2b1325a959dc, type: 3}
+  - {fileID: 514431684173208308, guid: 0ccad8c41f489724b9898bcdbf6f1025, type: 3}
+  - {fileID: -7045285494678850126, guid: f94c57695371b444fbe7165bd58d36ba, type: 3}
+  - {fileID: -1373944716377886855, guid: 9780479d307092a47a8e58f47b60f96e, type: 3}
+  - {fileID: -1084547769440774119, guid: 11a0f85f871443244a9ae597f4d188da, type: 3}
+  - {fileID: -5328842381633555508, guid: 8e89fda7f37b04f4a9ac9a6303e2af61, type: 3}

@@ -1,4 +1,6 @@
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CartaController : MonoBehaviour
 {
@@ -7,12 +9,17 @@ public class CartaController : MonoBehaviour
     private Vector3 pos;
     private Vector3 offset;
     private bool segurando = false;
+    public bool standby = false;
+    [SerializeField] private Sprite[] sprites;
+    private new SpriteRenderer renderer;
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = sprites[0];
         pos = transform.position;
         Debug.Log("Teste");
     }
@@ -26,10 +33,14 @@ public class CartaController : MonoBehaviour
     void OnMouseEnter()
     {
         if (!segurando)
-            transform.position = pos + new Vector3(0, 0.5f, 0);
+            transform.position = pos + new Vector3(0, 0.3f, 0);
+
     }
     void OnMouseExit()
     {
+
+
+
         if (!segurando)
             transform.position = pos;
     }
@@ -54,6 +65,11 @@ public class CartaController : MonoBehaviour
             nPos.z = 0;
             transform.position = nPos;
         }
+    }
+
+    public void setSprite(int i)
+    {
+        renderer.sprite = sprites[i];
     }
 
 
