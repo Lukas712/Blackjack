@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class GameController : MonoBehaviour
     private Baralho baralho;
     private int turn;
     private int contaPasse;
+    private int metaJogo;
 
     void Start()
     {
@@ -23,10 +25,13 @@ public class GameController : MonoBehaviour
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         inventoryPanel.SetActive(false);
+        metaJogo = 21;
     }
 
     void Update()
     {
+        player1.calculaMao();
+        player2.calculaMao();
         if(contaPasse != 2)
         {
             Jogador atual = (turn == 0 ? player1 : player2);
@@ -34,16 +39,11 @@ public class GameController : MonoBehaviour
             if (atual.abrirInventario())
             {
                 ToggleInventory(atual);
-                Debug.Log("Mao do jogador: " + (turn == 0 ? "Jogador 1" : "Jogador 2"));
-                for(int i = 0; i<atual.getMaoJogador().Count; i+=1)
-                {
-                    Debug.Log(atual.getMaoJogador()[i]);
-                }
             }
             if (atual.comprarCarta(baralho))
             {
                 contaPasse = 0;
-                atual.calculaMao();
+                
             }
             if (atual.passarVez())
             {
@@ -58,45 +58,46 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            if(21-player1.getSoma() > 0)
+            int somaPlayer1 = metaJogo-player1.getSoma();
+            int somaPlayer2 = metaJogo-player2.getSoma();
+
+            if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
             {
-                if(21-player2.getSoma() > 0)
-                {
-                    if(player1.getSoma() < player2.getSoma())
-                    {
-                        txt.text = "Vencedor foi o jogador 1";
-                    }
-                    else
-                    {
-                        txt.text = "Vencedor foi o jogador 2";
-                    }
-                }
-                else
+                if (somaPlayer1 < somaPlayer2)
                 {
                     txt.text = "Vencedor foi o jogador 1";
                 }
-            }
-            else if( 21-player1.getSoma() < 0)
-            {
-                if(21-player2.getSoma() < 0)
-                {
-                    if(21-player1.getSoma() > 21-player2.getSoma())
-                    {
-                        txt.text = "Vencedor foi o jogador 1";
-                    }
-                    else
-                    {
-                        txt.text = "Vencedor foi o jogador 2";
-                    }
-                }
-                else
+                else if (somaPlayer1 > somaPlayer2)
                 {
                     txt.text = "Vencedor foi o jogador 2";
                 }
+                else
+                {
+                    txt.text = "Empate";
+                }
+            }
+            else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
+            {
+                txt.text = "Vencedor foi o jogador 2";
+            }
+            else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
+            {
+                txt.text = "Vencedor foi o jogador 1";
             }
             else
             {
-                txt.text = "Empate";
+                if (somaPlayer1 > somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 1";
+                }
+                else if (somaPlayer1 < somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 2";
+                }
+                else
+                {
+                    txt.text = "Empate";
+                }
             }
         }
     }
