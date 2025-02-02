@@ -12,39 +12,93 @@ public class GameController : MonoBehaviour
     private Jogador player2;
     private Baralho baralho;
     private int turn;
+    private int contaPasse;
 
     void Start()
     {
         baralho = new Baralho(); 
-        player1 = new Jogador();
-        player2 = new Jogador();
-        for (int i = 0; i < 4; i++)
-        {
-            player1.comprarCarta(baralho);
-            player2.comprarCarta(baralho);
-        }
+        player1 = new Jogador(baralho);
+        player2 = new Jogador(baralho);
         turn = 0;
+        contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         inventoryPanel.SetActive(false);
     }
 
     void Update()
     {
-        Jogador atual = (turn == 0 ? player1 : player2);
-        if (atual.abrirInventario())
+        if(contaPasse != 2)
         {
-            ToggleInventory(atual);
+            Jogador atual = (turn == 0 ? player1 : player2);
+
+            if (atual.abrirInventario())
+            {
+                ToggleInventory(atual);
+                Debug.Log("Mao do jogador: " + (turn == 0 ? "Jogador 1" : "Jogador 2"));
+                for(int i = 0; i<atual.getMaoJogador().Count; i+=1)
+                {
+                    Debug.Log(atual.getMaoJogador()[i]);
+                }
+            }
+            if (atual.comprarCarta(baralho))
+            {
+                contaPasse = 0;
+                atual.calculaMao();
+            }
+            if (atual.passarVez())
+            {
+                
+                if(inventoryPanel.activeSelf)
+                {
+                    ToggleInventory(atual);
+                }
+                passarVez(atual);
+                contaPasse+=1;
+            }
         }
-        if (atual.comprarCarta(baralho))
+        else
         {
-            Debug.Log("Carta Comprada");
+            if(21-player1.getSoma() > 0)
+            {
+                if(21-player2.getSoma() > 0)
+                {
+                    if(player1.getSoma() < player2.getSoma())
+                    {
+                        txt.text = "Vencedor foi o jogador 1";
+                    }
+                    else
+                    {
+                        txt.text = "Vencedor foi o jogador 2";
+                    }
+                }
+                else
+                {
+                    txt.text = "Vencedor foi o jogador 1";
+                }
+            }
+            else if( 21-player1.getSoma() < 0)
+            {
+                if(21-player2.getSoma() < 0)
+                {
+                    if(21-player1.getSoma() > 21-player2.getSoma())
+                    {
+                        txt.text = "Vencedor foi o jogador 1";
+                    }
+                    else
+                    {
+                        txt.text = "Vencedor foi o jogador 2";
+                    }
+                }
+                else
+                {
+                    txt.text = "Vencedor foi o jogador 2";
+                }
+            }
+            else
+            {
+                txt.text = "Empate";
+            }
         }
-        if (atual.passarVez())
-        {
-            Debug.Log("Vez Passada");
-            passarVez(atual);
-        }
-        
     }
 
     public void ToggleInventory(Jogador atual)

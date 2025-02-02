@@ -29,15 +29,18 @@
                 }
             }
         }
-        public Jogador()
+        public Jogador(Baralho baralho)
         {
             inventario = new List<Trunfo>();
             maoJogador = new List<int>();
 
             pontosDeVida = 10;
             betAtual = 0;
+            soma = 0;
             random = new System.Random();
             adicionaTrunfosAleatorios(10);
+            insereCarta(baralho.CompraCarta());
+            insereCarta(baralho.CompraCarta());
 
         }
         public int getBet() { return betAtual; }
@@ -52,6 +55,11 @@
         public void insereInventario(Trunfo trunfo) { inventario.Add(trunfo); }
 
         public void insereCarta(int val) {
+            if(val == -1)
+            {
+                Debug.Log("Baralho Vazio");
+                return;
+            }
             maoJogador.Add(val);
             
         }
@@ -100,11 +108,11 @@
             // trunfo.efeitoTrunfo(baralho, this ,Adversario);
         }
 
-        private int calculaVida() {
+        public int calculaVida() {
             return ((pontosDeVida -= betAtual) >=0 ? pontosDeVida : 0);
         }
 
-        private void calculaMao() {
+        public void calculaMao() {
             soma = 0;
             for(int i = 0; i < maoJogador.Count; i+=1)
             {
@@ -112,6 +120,6 @@
             }
         }
 
-        public int getSoma() { return this.soma; }
+        public int getSoma() { return soma; }
 
     }
