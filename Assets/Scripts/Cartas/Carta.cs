@@ -11,9 +11,9 @@ public class Carta : MonoBehaviour
 
     [SerializeField] private string nome;
 
-    public Carta(string naipe, string valor)
+    public Carta(string valor)
     {
-        this.naipe = naipe;
+
         this.valor = valor;
     }
 
@@ -52,7 +52,7 @@ public class Carta : MonoBehaviour
 
     public override string ToString()
     {
-        return $"{this.valor} de {this.naipe}";
+        return $"{this.valor}";
     }
 }
 
