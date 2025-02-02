@@ -109,17 +109,17 @@ public class Jogador
         // trunfo.efeitoTrunfo(baralho, this ,Adversario);
     }
 
-        public int calculaVida() {
-            return ((pontosDeVida -= betAtual) >=0 ? pontosDeVida : 0);
-        }
+    public int calculaVida() {
+        return ((pontosDeVida -= betAtual) >=0 ? pontosDeVida : 0);
+    }
 
-        public void calculaMao() {
-            soma = 0;
-            for(int i = 0; i < maoJogador.Count; i+=1)
-            {
-                soma += maoJogador[i];
-            }
+    public void calculaMao() {
+        soma = 0;
+        for(int i = 0; i < maoJogador.Count; i+=1)
+        {
+            soma += maoJogador[i];
         }
+    }
 
         public int getSoma() { return soma; }
 

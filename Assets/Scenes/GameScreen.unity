@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 135365288}
   - component: {fileID: 135365289}
   m_Layer: 0
-  m_Name: Cartas2
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ Transform:
   m_LocalScale: {x: 1.0007156, y: 1.435959, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &135365289
 SpriteRenderer:
@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &319688168
 RectTransform:
   m_ObjectHideFlags: 0
@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4273782951979237701, guid: d0aa8c458d7fee4418de7e74ed85aa07, type: 3}
-  initpos: {fileID: 0}
 --- !u!1 &338040227
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -451,7 +450,7 @@ GameObject:
   - component: {fileID: 729322843}
   - component: {fileID: 729322844}
   m_Layer: 0
-  m_Name: Cartas1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +469,7 @@ Transform:
   m_LocalScale: {x: 0.9990229, y: 1.435959, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &729322844
 SpriteRenderer:
@@ -689,7 +688,7 @@ GameObject:
   - component: {fileID: 1244543248}
   - component: {fileID: 1244543247}
   m_Layer: 0
-  m_Name: Trunfo1
+  m_Name: FundoCartas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,7 +761,10 @@ Transform:
   m_LocalPosition: {x: -1.4836, y: -1.3017, z: 0}
   m_LocalScale: {x: 3.127194, y: 1.5818, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 729322843}
+  - {fileID: 1344651800}
+  - {fileID: 135365288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344651799
@@ -776,7 +778,7 @@ GameObject:
   - component: {fileID: 1344651800}
   - component: {fileID: 1344651801}
   m_Layer: 0
-  m_Name: Trunfo2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +797,7 @@ Transform:
   m_LocalScale: {x: 0.9983528, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1344651801
 SpriteRenderer:
@@ -1022,7 +1024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51.190186, y: -817}
+  m_AnchoredPosition: {x: -22, y: -516}
   m_SizeDelta: {x: 102.38, y: 37.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2022426782
@@ -1111,14 +1113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 772436643}
   trunfoPrefab: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
-  inventoryPanel: {fileID: 772436643}
-  trunfoPrefab: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
   txt: {fileID: 2086351883}
-  posinit: {fileID: 729322843}
-  posinitp2: {fileID: 135365288}
-  posTrunfo: {fileID: 1244543248}
-  posTrunfo2: {fileID: 1344651800}
-  Cartas: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
 --- !u!4 &2065454506
 Transform:
   m_ObjectHideFlags: 0

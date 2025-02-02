@@ -30,11 +30,6 @@ public class GameController : MonoBehaviour
         baralho = new Baralho();
         player1 = new Jogador(baralho);
         player2 = new Jogador(baralho);
-        for (int i = 0; i < 4; i++)
-        {
-            player1.comprarCarta(baralho);
-            player2.comprarCarta(baralho);
-        }
         turn = 0;
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
@@ -47,19 +42,76 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        Jogador atual = (turn == 0 ? player1 : player2);
-        if (atual.abrirInventario())
+        player1.calculaMao();
+        player2.calculaMao();
+        
+        if (contaPasse != 2)
         {
-            ToggleInventory(atual);
+            Jogador atual = (turn == 0 ? player1 : player2);
+
+            if (atual.abrirInventario())
+            {
+                ToggleInventory(atual);
+            }
+
+            if (atual.comprarCarta(baralho))
+            {
+                contaPasse = 0;
+            }
+
+            if (atual.passarVez())
+            {
+                if (inventoryPanel.activeSelf)
+                {
+                    ToggleInventory(atual);
+                }
+                passarVez(atual);
+                contaPasse += 1;
+            }
         }
-        if (atual.comprarCarta(baralho))
+        else
         {
-            Debug.Log("Carta Comprada");
-        }
-        if (atual.passarVez())
-        {
-            Debug.Log("Vez Passada");
-            passarVez(atual);
+            int somaPlayer1 = metaJogo - player1.getSoma();
+            int somaPlayer2 = metaJogo - player2.getSoma();
+
+            if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
+            {
+                if (somaPlayer1 < somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 1";
+                }
+                else if (somaPlayer1 > somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 2";
+                }
+                else
+                {
+                    txt.text = "Empate";
+                }
+            }
+            else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
+            {
+                txt.text = "Vencedor foi o jogador 2";
+            }
+            else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
+            {
+                txt.text = "Vencedor foi o jogador 1";
+            }
+            else
+            {
+                if (somaPlayer1 > somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 1";
+                }
+                else if (somaPlayer1 < somaPlayer2)
+                {
+                    txt.text = "Vencedor foi o jogador 2";
+                }
+                else
+                {
+                    txt.text = "Empate";
+                }
+            }
         }
 
     }
