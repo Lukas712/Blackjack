@@ -3,7 +3,7 @@ using UnityEngine;
 public class CompraTres : Trunfo
 {
     public override void efeitoTrunfo(Baralho baralho,Jogador usuario, Jogador adversario){
-        usuario.insereCarta(baralho.getCarta(3))
+        usuario.insereCarta(baralho.removeCarta(3));
     }
 
     public override string descricaoTrunfo(){
