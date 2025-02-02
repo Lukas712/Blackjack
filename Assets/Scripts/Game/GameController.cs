@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     {
         player1.calculaMao();
         player2.calculaMao();
-        
+
         if (contaPasse != 2)
         {
             Jogador atual = (turn == 0 ? player1 : player2);
@@ -178,7 +178,7 @@ public class GameController : MonoBehaviour
         {
             GameObject carta = Instantiate(Cartas, pRef.position + new Vector3(i * 0.1f + xmeia + xmeia, -0.95f, 0), Quaternion.identity);
             CartaController cscript = carta.GetComponent<CartaController>();
-            cscript.setSprite(1);
+            cscript.setSprite(i);
         }
 
 

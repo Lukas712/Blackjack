@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 135365288}
   - component: {fileID: 135365289}
   m_Layer: 0
-  m_Name: cartas2
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,11 +145,11 @@ Transform:
   m_GameObject: {fileID: 135365287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2324753, y: 3.5, z: 0}
-  m_LocalScale: {x: 2.4863334, y: 2.2714, z: 1}
+  m_LocalPosition: {x: 0.00089536747, y: 3.0355926, z: 0}
+  m_LocalScale: {x: 1.0007156, y: 1.435959, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &135365289
 SpriteRenderer:
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 729322843}
   - component: {fileID: 729322844}
   m_Layer: 0
-  m_Name: cartas
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,11 +466,11 @@ Transform:
   m_GameObject: {fileID: 729322842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2517817, y: -2.85, z: 0}
-  m_LocalScale: {x: 2.482128, y: 2.2714, z: 1}
+  m_LocalPosition: {x: -0.0068751704, y: -0.9788216, z: 0}
+  m_LocalScale: {x: 0.9990229, y: 1.435959, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &729322844
 SpriteRenderer:
@@ -615,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5418573ee74e8b64d9490fc53fa70ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 772436643}
+  trunfoTemplate: {fileID: 0}
 --- !u!1 &1244543246
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +628,7 @@ GameObject:
   - component: {fileID: 1244543248}
   - component: {fileID: 1244543247}
   m_Layer: 0
-  m_Name: trunfos
+  m_Name: FundoCartas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +701,10 @@ Transform:
   m_LocalPosition: {x: -3.2347, y: -1.3017, z: 0}
   m_LocalScale: {x: 2.4845555, y: 1.5818, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 729322843}
+  - {fileID: 1344651800}
+  - {fileID: 135365288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344651799
@@ -713,7 +718,7 @@ GameObject:
   - component: {fileID: 1344651800}
   - component: {fileID: 1344651801}
   m_Layer: 0
-  m_Name: trunfo2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,11 +733,11 @@ Transform:
   m_GameObject: {fileID: 1344651799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2593296, y: 1.93, z: 0}
-  m_LocalScale: {x: 2.480463, y: 1.5818, z: 1}
+  m_LocalPosition: {x: -0.009913046, y: 2.0430522, z: 0}
+  m_LocalScale: {x: 0.9983528, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244543248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1344651801
 SpriteRenderer:
@@ -1049,11 +1054,11 @@ MonoBehaviour:
   inventoryPanel: {fileID: 772436643}
   trunfoPrefab: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
   txt: {fileID: 2086351883}
-  posinit: {fileID: 729322843}
-  posinitp2: {fileID: 135365288}
-  posTrunfo: {fileID: 1244543248}
-  posTrunfo2: {fileID: 135365288}
-  Cartas: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
+  posinit: {fileID: 0}
+  posinitp2: {fileID: 0}
+  posTrunfo: {fileID: 0}
+  posTrunfo2: {fileID: 0}
+  Cartas: {fileID: 0}
 --- !u!4 &2065454506
 Transform:
   m_ObjectHideFlags: 0
@@ -1213,7 +1218,4 @@ SceneRoots:
   - {fileID: 338040231}
   - {fileID: 582128943}
   - {fileID: 2065454506}
-  - {fileID: 729322843}
-  - {fileID: 1344651800}
-  - {fileID: 135365288}
   - {fileID: 1244543248}
