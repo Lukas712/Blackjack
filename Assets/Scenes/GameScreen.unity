@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4273782951979237701, guid: d0aa8c458d7fee4418de7e74ed85aa07, type: 3}
+  initpos: {fileID: 0}
 --- !u!1 &338040227
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,12 +304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -561,8 +562,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 419.69, y: -0.5500183}
-  m_SizeDelta: {x: -856.86, y: -25.14}
+  m_AnchoredPosition: {x: 512, y: 0}
+  m_SizeDelta: {x: -1088.51, y: -25.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772436645
 MonoBehaviour:
@@ -616,67 +617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 772436643}
   trunfoTemplate: {fileID: 0}
---- !u!1001 &1032292779
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -436611149535324330, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4273782951979237701, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_Name
-      value: Carta 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976070993133363909, guid: 278eec9952bde8b4395adb8071538538, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 278eec9952bde8b4395adb8071538538, type: 3}
 --- !u!1 &1244543246
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,8 +698,8 @@ Transform:
   m_GameObject: {fileID: 1244543246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4836, y: -1.3017, z: 0}
-  m_LocalScale: {x: 3.127194, y: 1.5818, z: 1}
+  m_LocalPosition: {x: -3.2347, y: -1.3017, z: 0}
+  m_LocalScale: {x: 2.4845555, y: 1.5818, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 729322843}
@@ -1114,6 +1054,11 @@ MonoBehaviour:
   inventoryPanel: {fileID: 772436643}
   trunfoPrefab: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
   txt: {fileID: 2086351883}
+  posinit: {fileID: 0}
+  posinitp2: {fileID: 0}
+  posTrunfo: {fileID: 0}
+  posTrunfo2: {fileID: 0}
+  Cartas: {fileID: 0}
 --- !u!4 &2065454506
 Transform:
   m_ObjectHideFlags: 0
@@ -1188,8 +1133,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Seu Turno '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1274,4 +1219,3 @@ SceneRoots:
   - {fileID: 582128943}
   - {fileID: 2065454506}
   - {fileID: 1244543248}
-  - {fileID: 1032292779}
