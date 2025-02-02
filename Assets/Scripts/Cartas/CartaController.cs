@@ -11,7 +11,7 @@ public class CartaController : MonoBehaviour
     private bool segurando = false;
     public bool standby = false;
     [SerializeField] private Sprite[] sprites;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
 
 
 
@@ -19,6 +19,7 @@ public class CartaController : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = sprites[0];
         pos = transform.position;
         Debug.Log("Teste");
     }

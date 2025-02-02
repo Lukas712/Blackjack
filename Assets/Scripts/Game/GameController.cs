@@ -9,8 +9,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject trunfoPrefab;
     [SerializeField] private TextMeshProUGUI txt;
     [SerializeField] private Transform posinit;
+    [SerializeField] private Transform posinitp2;
+    [SerializeField] private Transform posTrunfo;
+    [SerializeField] private Transform posTrunfo2;
+
     [SerializeField] private GameObject Cartas;
     private GameObject[] CartasPrefab;
+    private float xmeia;
 
     private Jogador player1;
     private Jogador player2;
@@ -19,6 +24,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        xmeia = posinit.position.x / 2;
         baralho = new Baralho();
         player1 = new Jogador();
         player2 = new Jogador();
@@ -29,7 +35,9 @@ public class GameController : MonoBehaviour
         }
         turn = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
-        desenhaTela();
+        desenhaTela(player1, posinit.transform, posTrunfo);
+        desenhaTela(player2, posinitp2.transform, posTrunfo2);
+
         inventoryPanel.SetActive(false);
     }
 
@@ -107,16 +115,16 @@ public class GameController : MonoBehaviour
 
 
 
-    void desenhaTela()
+    void desenhaTela(Jogador player, Transform pRef, Transform pTrunfo)
     {
-        Debug.Log("Entrou " + player1.getMaoJogador().Count);
-        Transform pontoReferencia = posinit.transform;
-        for (int i = 0; i < player1.getMaoJogador().Count; i++)
+        Debug.Log("Entrou " + player.getMaoJogador().Count);
+        for (int i = 0; i < player.getMaoJogador().Count; i++)
         {
-            GameObject carta = Instantiate(Cartas, pontoReferencia.position + new Vector3(i * 2.0f, 0, 0), Quaternion.identity);
+            GameObject carta = Instantiate(Cartas, pRef.position + new Vector3(i * 0.1f + xmeia + xmeia, -0.95f, 0), Quaternion.identity);
+
             CartaController cscript = carta.GetComponent<CartaController>();
 
-            cscript.setSprite(player1.getMaoJogador()[i]);
+            cscript.setSprite(1);
 
         }
 
