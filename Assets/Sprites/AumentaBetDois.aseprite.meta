@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df33e060a46f1d247889b28e16c3a6d3
+guid: f7aadb24da19ed9478069b41021107df
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: DescePara17
+  - name: BetDois
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -134,7 +134,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: 3f97f6ac218541e4cbc8f6f1405f0fc8
+    spriteID: 804ed6217143d364dbc40fe1d83eb11c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,13 +146,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1974697168
-    name: DescePara17
+    guid: 573040464
+    name: BetDois
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: DescePara17
+    - name: AumentaBetDois
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -160,7 +160,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 3f97f6ac218541e4cbc8f6f1405f0fc8
+      spriteId: 804ed6217143d364dbc40fe1d83eb11c
     linkedCells: []
     parentIndex: -1
   platformSettings:

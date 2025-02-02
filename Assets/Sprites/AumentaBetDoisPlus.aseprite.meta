@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8086c977c1d245143bdc2d169c162051
+guid: ddafe065066e5c845bc45c4bc7969261
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: BetUm
+  - name: BetDoisMais
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -134,7 +134,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: 52b56034b27ac054ca4ac6266dd844cd
+    spriteID: b0efd7c8307c57e4998bf57cd5c4d5bd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,13 +146,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1204382235
-    name: BetUm
+    guid: 1267098850
+    name: BetDoisMais
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: BetUm
+    - name: AumentaBetDoisPlus
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -160,7 +160,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 52b56034b27ac054ca4ac6266dd844cd
+      spriteId: b0efd7c8307c57e4998bf57cd5c4d5bd
     linkedCells: []
     parentIndex: -1
   platformSettings:

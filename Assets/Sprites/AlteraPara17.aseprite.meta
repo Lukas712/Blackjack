@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f814b1a2d85ea1142ae45fe26b52bf52
+guid: df33e060a46f1d247889b28e16c3a6d3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: AumentaPara24
+  - name: DescePara17
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -134,7 +134,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: 6ad6b207ae5467f49983a441ab128d6c
+    spriteID: 3f97f6ac218541e4cbc8f6f1405f0fc8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,13 +146,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1208880603
-    name: AumentaPara24
+    guid: -1974697168
+    name: DescePara17
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: AumentaPara24
+    - name: AlteraPara17
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -160,7 +160,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 6ad6b207ae5467f49983a441ab128d6c
+      spriteId: 3f97f6ac218541e4cbc8f6f1405f0fc8
     linkedCells: []
     parentIndex: -1
   platformSettings:

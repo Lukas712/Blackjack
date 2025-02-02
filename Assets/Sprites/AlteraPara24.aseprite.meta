@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c744805c3db20441a58e7eee199d477
+guid: f814b1a2d85ea1142ae45fe26b52bf52
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: BetMenosDois
+  - name: AumentaPara24
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -134,7 +134,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: 5606b52b714c54b43a755f1d59bf1560
+    spriteID: 6ad6b207ae5467f49983a441ab128d6c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,13 +146,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 724601488
-    name: BetMenosDois
+    guid: 1208880603
+    name: AumentaPara24
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: BetMenosDois
+    - name: AlteraPara24
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -160,7 +160,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 5606b52b714c54b43a755f1d59bf1560
+      spriteId: 6ad6b207ae5467f49983a441ab128d6c
     linkedCells: []
     parentIndex: -1
   platformSettings:
