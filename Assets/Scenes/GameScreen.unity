@@ -662,7 +662,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< HEAD
 --- !u!1 &772436643
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 772436643}
   trunfoTemplate: {fileID: 168985311}
-=======
 --- !u!1001 &1032292779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -816,7 +814,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278eec9952bde8b4395adb8071538538, type: 3}
->>>>>>> 9bb4634946c9b9944d2e01a80393cab06bbf5a5f
 --- !u!1 &1244543246
 GameObject:
   m_ObjectHideFlags: 0
