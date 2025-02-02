@@ -10,12 +10,19 @@ public class GameController : MonoBehaviour
 
     private Jogador player1;
     private Jogador player2;
+    private Baralho baralho;
     private int turn;
 
     void Start()
     {
+        baralho = new Baralho(); 
         player1 = new Jogador();
         player2 = new Jogador();
+        for (int i = 0; i < 4; i++)
+        {
+            player1.comprarCarta(baralho);
+            player2.comprarCarta(baralho);
+        }
         turn = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         inventoryPanel.SetActive(false);
@@ -28,7 +35,7 @@ public class GameController : MonoBehaviour
         {
             ToggleInventory(atual);
         }
-        if (atual.comprarCarta())
+        if (atual.comprarCarta(baralho))
         {
             Debug.Log("Carta Comprada");
         }
@@ -37,6 +44,7 @@ public class GameController : MonoBehaviour
             Debug.Log("Vez Passada");
             passarVez(atual);
         }
+        
     }
 
     public void ToggleInventory(Jogador atual)
@@ -44,7 +52,7 @@ public class GameController : MonoBehaviour
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
 
-        if (!isActive) // Apenas recrie os prefabs ao abrir o inventário
+        if (!isActive) 
         {
             AtualizarInventario(atual);
         }
@@ -53,10 +61,8 @@ public class GameController : MonoBehaviour
 
     public void AtualizarInventario(Jogador atual)
     {
-        // Limpa o inventário visualmente
         LimparInventario();
 
-        // Recria os objetos com base no estado atual do jogador
         foreach (var trunfo in atual.getInventarioJogador())
         {
             if (trunfoPrefab != null && inventoryPanel != null)
@@ -66,7 +72,7 @@ public class GameController : MonoBehaviour
                 TextMeshProUGUI trunfoText = trunfoObj.GetComponentInChildren<TextMeshProUGUI>();
                 if (trunfoText != null)
                 {
-                    trunfoText.text = trunfo.GetType().Name; // Exibe o tipo de carta
+                    trunfoText.text = trunfo.GetType().Name;
                 }
             }
         }
@@ -78,10 +84,9 @@ public class GameController : MonoBehaviour
 {
     if (inventoryPanel != null)
     {
-        // Destroi apenas os objetos filhos do inventário, sem afetar o prefab original
         foreach (Transform child in inventoryPanel.transform)
         {
-            Destroy(child.gameObject); // Destroi os filhos
+            Destroy(child.gameObject);
         }
     }
 }

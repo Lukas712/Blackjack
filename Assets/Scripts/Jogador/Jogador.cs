@@ -7,7 +7,7 @@
     public class Jogador
     {
         private System.Random random;
-        private List<Carta> maoJogador;
+        private List<int> maoJogador;
         private List<Trunfo> inventario;
         private int pontosDeVida;
         private int betAtual;
@@ -32,7 +32,8 @@
         public Jogador()
         {
             inventario = new List<Trunfo>();
-            maoJogador = new List<Carta>();
+            maoJogador = new List<int>();
+
             pontosDeVida = 10;
             betAtual = 0;
             random = new System.Random();
@@ -45,14 +46,19 @@
         public int getVida() { return pontosDeVida; }
         public void setVida(int val) { pontosDeVida = val; }
 
-        public List<Carta> getMaoJogador() { return maoJogador; }
+        public List<int> getMaoJogador() { return maoJogador; }
         public List<Trunfo> getInventarioJogador() { return inventario; }
 
         public void insereInventario(Trunfo trunfo) { inventario.Add(trunfo); }
 
-        public void insereCarta(int val) { }
+        public void insereCarta(int val) {
+            maoJogador.Add(val);
+            
+        }
 
-        public void removeCarta(int val) { }
+        public void removeCarta(int val) {
+            maoJogador.Remove(val);
+        }
         public bool passarVez()
         {
             if(Input.GetKeyDown(KeyCode.E))
@@ -62,7 +68,7 @@
             }
             return false;
         }
-        public bool comprarCarta()
+        public bool comprarCarta(Baralho baralho)
         {
             if(Input.GetKeyDown(KeyCode.F))
             {
@@ -72,6 +78,8 @@
                     Debug.Log("Trunfo Comprado");
                     adicionaTrunfosAleatorios(1);
                 }
+                insereCarta(baralho.CompraCarta());
+
                 return true;
             }
             return false;
@@ -87,14 +95,22 @@
 
         }
 
-        public void usaTrunfo(Trunfo trunfo, Jogador Adversario)
+        public void usaTrunfo(Trunfo trunfo, Jogador Adversario, Baralho baralho)
         {
-
+            // trunfo.efeitoTrunfo(baralho, this ,Adversario);
         }
 
-        private int calculaVida() { return 0; }
+        private int calculaVida() {
+            return ((pontosDeVida -= betAtual) >=0 ? pontosDeVida : 0);
+        }
 
-        private int calculaMao() { return 0; }
+        private void calculaMao() {
+            soma = 0;
+            for(int i = 0; i < maoJogador.Count; i+=1)
+            {
+                soma += maoJogador[i];
+            }
+        }
 
         public int getSoma() { return this.soma; }
 

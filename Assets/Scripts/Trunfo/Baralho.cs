@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Baralho
 {
-    private List<Carta> cartas;
+    private List<int> cartas;
 
+    // Start is called before the first frame update
     public Baralho()
     {
-        cartas = new List<Carta>();
-        string[] valores = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11"};
-
+        cartas = new List<int>();
+        for(int i = 1; i<= 11; i+=1)
+        {
+            cartas.Add(i);
+        }
         EmbaralhaCartas();
     }
 
@@ -19,12 +22,13 @@ public class Baralho
         cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
     }
 
-    public Carta CompraCarta()
+    public int CompraCarta()
     {
-        if (cartas.Count == 0) return null;
-
-        Carta carta = cartas[0];
+        if (cartas.Count == 0){
+            return -1;
+        }
+        int compra = cartas.First();
         cartas.RemoveAt(0);
-        return carta;
+        return compra;
     }
 }
