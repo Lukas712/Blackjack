@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject trunfoPrefab;
     [SerializeField] private TextMeshProUGUI txt;
+    [SerializeField] private Transform posinit;
+    [SerializeField] private GameObject Cartas;
+    private GameObject[] CartasPrefab;
 
     private Jogador player1;
     private Jogador player2;
@@ -15,7 +19,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        baralho = new Baralho(); 
+        baralho = new Baralho();
         player1 = new Jogador();
         player2 = new Jogador();
         for (int i = 0; i < 4; i++)
@@ -25,6 +29,7 @@ public class GameController : MonoBehaviour
         }
         turn = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
+        desenhaTela();
         inventoryPanel.SetActive(false);
     }
 
@@ -44,7 +49,7 @@ public class GameController : MonoBehaviour
             Debug.Log("Vez Passada");
             passarVez(atual);
         }
-        
+
     }
 
     public void ToggleInventory(Jogador atual)
@@ -52,7 +57,7 @@ public class GameController : MonoBehaviour
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
 
-        if (!isActive) 
+        if (!isActive)
         {
             AtualizarInventario(atual);
         }
@@ -81,15 +86,15 @@ public class GameController : MonoBehaviour
 
 
     void LimparInventario()
-{
-    if (inventoryPanel != null)
     {
-        foreach (Transform child in inventoryPanel.transform)
+        if (inventoryPanel != null)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in inventoryPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
-}
 
 
     void passarVez(Jogador atual)
@@ -98,5 +103,25 @@ public class GameController : MonoBehaviour
         txt.text = "Seu Turno ";
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         atual = (turn == 0 ? player1 : player2);
+    }
+
+
+
+    void desenhaTela()
+    {
+        Debug.Log("Entrou " + player1.getMaoJogador().Count);
+        Transform pontoReferencia = posinit.transform;
+        for (int i = 0; i < player1.getMaoJogador().Count; i++)
+        {
+            GameObject carta = Instantiate(Cartas, pontoReferencia.position + new Vector3(i * 2.0f, 0, 0), Quaternion.identity);
+            CartaController cscript = carta.GetComponent<CartaController>();
+
+            cscript.setSprite(player1.getMaoJogador()[i]);
+
+        }
+
+
+
+
     }
 }
