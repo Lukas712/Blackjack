@@ -117,16 +117,15 @@ public class GameController : MonoBehaviour
 
     void desenhaTela(Jogador player, Transform pRef, Transform pTrunfo)
     {
-        Debug.Log("Entrou " + player.getMaoJogador().Count);
-        for (int i = 0; i < player.getMaoJogador().Count; i++)
+        Debug.Log("Entrou " + player.getMaoJogador().Count + 1);
+        for (int i = 0; i < player.getMaoJogador().Count + 1; i++)
         {
             GameObject carta = Instantiate(Cartas, pRef.position + new Vector3(i * 0.1f + xmeia + xmeia, -0.95f, 0), Quaternion.identity);
-
             CartaController cscript = carta.GetComponent<CartaController>();
-
             cscript.setSprite(1);
-
         }
+
+
 
 
 
