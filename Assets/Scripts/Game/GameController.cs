@@ -28,8 +28,8 @@ public class GameController : MonoBehaviour
     {
         xmeia = posinit.position.x / 2;
         baralho = new Baralho();
-        player1 = new Jogador();
-        player2 = new Jogador();
+        player1 = new Jogador(baralho);
+        player2 = new Jogador(baralho);
         for (int i = 0; i < 4; i++)
         {
             player1.comprarCarta(baralho);
