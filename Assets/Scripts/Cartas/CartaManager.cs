@@ -6,7 +6,7 @@ public class CartaManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject prefab;
-    private Vector3 pInit;
+    
 
     private List<GameObject> deck = new List<GameObject>();
 
