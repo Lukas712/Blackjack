@@ -1490,7 +1490,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1773913083}
         m_TargetAssemblyTypeName: TrocarCena, Assembly-CSharp
-        m_MethodName: teste
+        m_MethodName: mudar
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

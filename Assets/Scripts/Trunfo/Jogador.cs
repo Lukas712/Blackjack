@@ -7,6 +7,7 @@ public class Jogador
     private List<Trunfo> inventario;
     private int pontosDeVida;
     private int betAtual;
+    private int soma;
 
     public Jogador()
     {
@@ -52,5 +53,7 @@ public class Jogador
     private int calculaVida() { return 0; }
 
     private int calculaMao() { return 0; }
+
+    public int getSoma() { return this.soma; }
 
 }
