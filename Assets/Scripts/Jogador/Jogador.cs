@@ -41,8 +41,7 @@ public class Jogador
             adicionaTrunfosAleatorios(10);
             insereCarta(baralho.CompraCarta());
             insereCarta(baralho.CompraCarta());
-
-    }
+        }
     public int getBet() { return betAtual; }
     public void setBet(int val) { betAtual = val; }
 
@@ -121,6 +120,6 @@ public class Jogador
         }
     }
 
-        public int getSoma() { return soma; }
+        public int getSoma() { return this.soma; }
 
 }

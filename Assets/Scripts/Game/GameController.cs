@@ -44,7 +44,6 @@ public class GameController : MonoBehaviour
     {
         player1.calculaMao();
         player2.calculaMao();
-
         if (contaPasse != 2)
         {
             Jogador atual = (turn == 0 ? player1 : player2);
@@ -71,6 +70,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            
             int somaPlayer1 = metaJogo - player1.getSoma();
             int somaPlayer2 = metaJogo - player2.getSoma();
 
