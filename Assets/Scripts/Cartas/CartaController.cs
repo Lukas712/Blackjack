@@ -9,7 +9,6 @@ public class CartaController : MonoBehaviour
     private Vector3 pos;
     private Vector3 offset;
     private bool segurando = false;
-    public bool standby = false;
     [SerializeField] private Sprite[] sprites;
     private new SpriteRenderer renderer;
 
@@ -21,7 +20,7 @@ public class CartaController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         renderer.sprite = sprites[0];
         pos = transform.position;
-        Debug.Log("Teste");
+        // Debug.Log("Teste");
     }
 
     // Update is called once per frame
