@@ -1155,6 +1155,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
   m_PrefabInstance: {fileID: 206107388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &542400413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542400414}
+  m_Layer: 0
+  m_Name: Cartas Cena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &542400414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542400413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.143587, y: 1.4027082, z: -0.064923994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549130849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
@@ -1817,6 +1848,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: trunfoPrefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4997001502577420424, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2812772203236048955, guid: 7e59822ca1010764b8281cb99560c290, type: 3}
+    - target: {fileID: 4997001502577420424, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1879,11 +1918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -8.74
       objectReference: {fileID: 0}
     - target: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1.657
       objectReference: {fileID: 0}
     - target: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3853,3 +3892,4 @@ SceneRoots:
   - {fileID: 847775516}
   - {fileID: 1202014155}
   - {fileID: 1101245265}
+  - {fileID: 542400414}
