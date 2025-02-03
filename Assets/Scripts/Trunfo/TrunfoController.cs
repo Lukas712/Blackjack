@@ -24,8 +24,7 @@ public class TrunfoController : MonoBehaviour
 
     void setSprite(string desc)
     {
-
-
+        
 
     }
 }

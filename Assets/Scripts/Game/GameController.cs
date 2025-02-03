@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject carta1;
     [SerializeField] private GameObject carta2;
     [SerializeField] private GameObject carta3;
+    [SerializeField] private GameObject trunfosinv;
+    [SerializeField] private GameObject pTrunfo1;
+    [SerializeField] private GameObject pTrunfo2;
     [SerializeField] private TextMeshProUGUI soma1;
     [SerializeField] private TextMeshProUGUI soma2;
     private Jogador player1;
@@ -38,6 +42,9 @@ public class GameController : MonoBehaviour
 
         Debug.Log("Tamanho das cartas jogador1 " + player1.getMaoJogador().Count);
         Debug.Log("Tamanho das cartas jogador2 " + player2.getMaoJogador().Count);
+        offTrunfoinv(trunfosinv);
+        pTrunfo1.gameObject.SetActive(false);
+        pTrunfo2.gameObject.SetActive(false);
 
     }
 
@@ -53,6 +60,7 @@ public class GameController : MonoBehaviour
             if (atual.abrirInventario())
             {
                 ToggleInventory(atual);
+                onTrunfoinv(trunfosinv);
             }
 
             if (atual.comprarCarta(baralho))
@@ -65,6 +73,7 @@ public class GameController : MonoBehaviour
                 if (inventoryPanel.activeSelf)
                 {
                     ToggleInventory(atual);
+                    offTrunfoinv(trunfosinv);
                 }
                 passarVez(atual);
                 contaPasse += 1;
@@ -117,6 +126,9 @@ public class GameController : MonoBehaviour
             }
         }
 
+        if (!inventoryPanel.activeSelf)
+            offTrunfoinv(trunfosinv);
+
     }
 
     public void ToggleInventory(Jogador atual)
@@ -124,9 +136,12 @@ public class GameController : MonoBehaviour
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
 
+
+
         if (!isActive)
         {
             AtualizarInventario(atual);
+
         }
     }
 
@@ -230,7 +245,22 @@ public class GameController : MonoBehaviour
             Debug.Log("3 carta eh " + atual.getMaoJogador()[2]);
 
 
+    }
 
 
+    private void offTrunfoinv(GameObject obj)
+    {
+        foreach (Transform filho in obj.transform)
+        {
+            filho.gameObject.SetActive(false);
+        }
+    }
+
+    private void onTrunfoinv(GameObject obj)
+    {
+        foreach (Transform filho in obj.transform)
+        {
+            filho.gameObject.SetActive(true);
+        }
     }
 }
