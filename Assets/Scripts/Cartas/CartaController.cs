@@ -1,16 +1,16 @@
-using UnityEditor.ShortcutManagement;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CartaController : MonoBehaviour
 {
 
 
-    private Vector3 pos;
-    private Vector3 offset;
+    private UnityEngine.Vector3 pos;
+    private UnityEngine.Vector3 offset;
     private bool segurando = false;
     [SerializeField] private Sprite[] sprites;
     private new SpriteRenderer renderer;
+    private CartaController cartaTroca;
 
 
 
@@ -20,6 +20,7 @@ public class CartaController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         renderer.sprite = sprites[0];
         pos = transform.position;
+        cartaTroca = null;
         // Debug.Log("Teste");
     }
 
@@ -32,7 +33,7 @@ public class CartaController : MonoBehaviour
     void OnMouseEnter()
     {
         if (!segurando)
-            transform.position = pos + new Vector3(0, 0.3f, 0);
+            transform.position = pos + new UnityEngine.Vector3(0, 0.3f, 0);
 
     }
     void OnMouseExit()
@@ -47,7 +48,10 @@ public class CartaController : MonoBehaviour
     void OnMouseUp()
     {
         segurando = false;
-        transform.position = pos;
+        if (cartaTroca != null)
+            swapPo(cartaTroca);
+        else
+            transform.position = pos;
     }
 
     void OnMouseDown()
@@ -60,7 +64,7 @@ public class CartaController : MonoBehaviour
     {
         if (segurando)
         {
-            Vector3 nPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            UnityEngine.Vector3 nPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
             nPos.z = 0;
             transform.position = nPos;
         }
@@ -69,6 +73,33 @@ public class CartaController : MonoBehaviour
     public void setSprite(int i)
     {
         renderer.sprite = sprites[i];
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D obj)
+    {
+        CartaController temp = obj.GetComponent<CartaController>();
+        if (temp != null && temp != this)
+            cartaTroca = temp;
+    }
+
+
+
+    private void OnTriggerExit2D(Collider2D obj)
+    {
+        if (obj.GetComponent<CartaController>() == cartaTroca)
+            cartaTroca = null;
+    }
+
+    private void swapPo(CartaController carta)
+    {
+        UnityEngine.Vector3 tempPos = pos;
+        pos = carta.pos;
+        carta.pos = tempPos;
+
+        transform.position = pos;
+        carta.transform.position = carta.pos;
+
     }
 
 

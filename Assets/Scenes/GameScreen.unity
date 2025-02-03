@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4273782951979237701, guid: 3cf4c6e6b6358214a9954ea7c334a07b, type: 3}
       propertyPath: m_Name
-      value: CartaVirada (2)
+      value: CartaVirada
       objectReference: {fileID: 0}
     - target: {fileID: 4976070993133363909, guid: 3cf4c6e6b6358214a9954ea7c334a07b, type: 3}
       propertyPath: m_LocalPosition.x
