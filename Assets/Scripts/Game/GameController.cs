@@ -237,12 +237,12 @@ public class GameController : MonoBehaviour
         }
 
 
-        Debug.Log(atual.getMaoJogador().Count + " e local " + atual.getMaoJogador().Count);
-        if (atual.getMaoJogador().Count > 2)
-            Debug.Log("Soma das cartas eh " + (atual.getMaoJogador()[1] + atual.getMaoJogador()[0] + atual.getMaoJogador()[2]));
-        Debug.Log(atual.getSoma());
-        if (atual.getMaoJogador().Count > 2)
-            Debug.Log("3 carta eh " + atual.getMaoJogador()[2]);
+        // Debug.Log(atual.getMaoJogador().Count + " e local " + atual.getMaoJogador().Count);
+        //if (atual.getMaoJogador().Count > 2)
+        //Debug.Log("Soma das cartas eh " + (atual.getMaoJogador()[1] + atual.getMaoJogador()[0] + atual.getMaoJogador()[2]));
+        // Debug.Log(atual.getSoma());
+        // if (atual.getMaoJogador().Count > 2)
+        //Debug.Log("3 carta eh " + atual.getMaoJogador()[2]);
 
 
     }
