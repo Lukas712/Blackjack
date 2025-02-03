@@ -12,6 +12,7 @@ public class Jogador
     private int pontosDeVida;
     private int betAtual;
     private int soma;
+    private bool carta3;
 
     private void adicionaTrunfosAleatorios(int quantidade)
     {
@@ -24,24 +25,25 @@ public class Jogador
             {
                 Type tipoTrunfo = classesDerivadas[random.Next(classesDerivadas.Count())];
 
-                    Trunfo instanciaTrunfo = (Trunfo)Activator.CreateInstance(tipoTrunfo);
-                    inventario.Add(instanciaTrunfo);
-                }
+                Trunfo instanciaTrunfo = (Trunfo)Activator.CreateInstance(tipoTrunfo);
+                inventario.Add(instanciaTrunfo);
             }
         }
-        public Jogador(Baralho baralho)
-        {
-            inventario = new List<Trunfo>();
-            maoJogador = new List<int>();
+    }
+    public Jogador(Baralho baralho)
+    {
+        inventario = new List<Trunfo>();
+        maoJogador = new List<int>();
 
-            pontosDeVida = 10;
-            betAtual = 0;
-            soma = 0;
-            random = new System.Random();
-            adicionaTrunfosAleatorios(10);
-            insereCarta(baralho.CompraCarta());
-            insereCarta(baralho.CompraCarta());
-        }
+        pontosDeVida = 10;
+        betAtual = 0;
+        soma = 0;
+        random = new System.Random();
+        adicionaTrunfosAleatorios(10);
+        insereCarta(baralho.CompraCarta());
+        insereCarta(baralho.CompraCarta());
+
+    }
     public int getBet() { return betAtual; }
     public void setBet(int val) { betAtual = val; }
 
@@ -53,15 +55,16 @@ public class Jogador
 
     public void insereInventario(Trunfo trunfo) { inventario.Add(trunfo); }
 
-        public void insereCarta(int val) {
-            if(val == -1)
-            {
-                Debug.Log("Baralho Vazio");
-                return;
-            }
-            maoJogador.Add(val);
-            
+    public void insereCarta(int val)
+    {
+        if (val == -1)
+        {
+            Debug.Log("Baralho Vazio");
+            return;
         }
+        maoJogador.Add(val);
+
+    }
 
     public void removeCarta(int val)
     {
@@ -87,6 +90,7 @@ public class Jogador
                 adicionaTrunfosAleatorios(1);
             }
             insereCarta(baralho.CompraCarta());
+            ativac3();
 
             return true;
         }
@@ -108,18 +112,29 @@ public class Jogador
         // trunfo.efeitoTrunfo(baralho, this ,Adversario);
     }
 
-    public int calculaVida() {
-        return ((pontosDeVida -= betAtual) >=0 ? pontosDeVida : 0);
+    public int calculaVida()
+    {
+        return ((pontosDeVida -= betAtual) >= 0 ? pontosDeVida : 0);
     }
 
-    public void calculaMao() {
+    public void calculaMao()
+    {
         soma = 0;
-        for(int i = 0; i < maoJogador.Count; i+=1)
+        for (int i = 0; i < maoJogador.Count; i += 1)
         {
             soma += maoJogador[i];
         }
     }
 
-        public int getSoma() { return this.soma; }
+    public int getSoma() { return soma; }
+
+
+    public bool iscarta3() { return carta3; }
+
+    public void ativac3()
+    {
+
+        carta3 = true;
+    }
 
 }

@@ -12,8 +12,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txt;
     [SerializeField] private GameObject carta1;
     [SerializeField] private GameObject carta2;
+    [SerializeField] private GameObject carta3;
     [SerializeField] private TextMeshProUGUI soma1;
     [SerializeField] private TextMeshProUGUI soma2;
+
 
 
     //[SerializeField] private GameObject Cartas;
@@ -33,6 +35,7 @@ public class GameController : MonoBehaviour
         baralho = new Baralho();
         player1 = new Jogador(baralho);
         player2 = new Jogador(baralho);
+        carta3.gameObject.SetActive(false);
         turn = 0;
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
@@ -184,19 +187,58 @@ public class GameController : MonoBehaviour
         atual.calculaMao();
 
 
-        soma1.text = (player1.getSoma() + "/21");
-        soma2.text = (player2.getSoma() + "/21");
 
-        CartaController c1 = carta1.GetComponent<CartaController>();
-        c1.setSprite(atual.getMaoJogador()[0] - 1);
+        if (!player1.iscarta3())
+            soma1.text = (player1.getMaoJogador()[1] + player1.getMaoJogador()[0] + "/21");
+        else
+            soma1.text = (player1.getMaoJogador()[1] + player1.getMaoJogador()[0] + player1.getMaoJogador()[2] + "/21");
 
-        CartaController c2 = carta2.GetComponent<CartaController>();
-        c2.setSprite(atual.getMaoJogador()[1] - 1);
+
+        if (!player2.iscarta3())
+            soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + "/21");
+        else
+            soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + player2.getMaoJogador()[2] + "/21");
+
+
+        if (!atual.iscarta3())
+        {
+
+
+
+            CartaController c1 = carta1.GetComponent<CartaController>();
+            c1.setSprite(atual.getMaoJogador()[0] - 1);
+
+            CartaController c2 = carta2.GetComponent<CartaController>();
+            c2.setSprite(atual.getMaoJogador()[1] - 1);
+            carta3.gameObject.SetActive(false);
+        }
+        else
+        {
+
+
+
+            carta3.gameObject.SetActive(true);
+            CartaController c1 = carta1.GetComponent<CartaController>();
+            c1.setSprite(atual.getMaoJogador()[0] - 1);
+
+            CartaController c2 = carta2.GetComponent<CartaController>();
+            c2.setSprite(atual.getMaoJogador()[1] - 1);
+
+            CartaController c3 = carta3.GetComponent<CartaController>();
+            c3.setSprite(atual.getMaoJogador()[2] - 1);
+
+
+        }
 
 
         Debug.Log(atual.getMaoJogador().Count + " e local " + atual.getMaoJogador().Count);
-        Debug.Log("Soma das cartas eh " + (atual.getMaoJogador()[1] + atual.getMaoJogador()[0]));
-        Debug.Log(atual.getMaoJogador()[1]);
+        if (atual.getMaoJogador().Count > 2)
+            Debug.Log("Soma das cartas eh " + (atual.getMaoJogador()[1] + atual.getMaoJogador()[0] + atual.getMaoJogador()[2]));
+        Debug.Log(atual.getSoma());
+        if (atual.getMaoJogador().Count > 2)
+            Debug.Log("3 carta eh " + atual.getMaoJogador()[2]);
+
+
 
 
     }

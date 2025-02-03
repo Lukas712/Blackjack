@@ -19,8 +19,9 @@ public class Baralho
 
     public void EmbaralhaCartas()
     {
-        
-        cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
+        System.Random rng = new System.Random();
+        cartas = cartas.OrderBy(c => rng.Next()).ToList();
+        //cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
     }
 
     public int CompraCarta()
