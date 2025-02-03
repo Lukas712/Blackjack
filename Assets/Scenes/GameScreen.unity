@@ -758,7 +758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: ?/21
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -837,6 +837,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834680955}
   m_CullTransparentMesh: 1
+--- !u!1001 &847775516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_Name
+      value: Carta3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 857a700d075657540898562170f054e5, type: 3}
 --- !u!1 &1051518360
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316, y: 237}
+  m_AnchoredPosition: {x: 231.4, y: 52.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051518362
@@ -1030,7 +1087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: ?/21
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1283,6 +1340,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1592052820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
+  m_PrefabInstance: {fileID: 847775516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1631124024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,7 +1355,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
       propertyPath: m_Name
-      value: Carta1
+      value: Carta2
       objectReference: {fileID: 0}
     - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1350,7 +1412,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4273782951979237701, guid: 857a700d075657540898562170f054e5, type: 3}
       propertyPath: m_Name
-      value: Carta2
+      value: Carta1
       objectReference: {fileID: 0}
     - target: {fileID: 4976070993133363909, guid: 857a700d075657540898562170f054e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1419,7 +1481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4273782951979237701, guid: 3cf4c6e6b6358214a9954ea7c334a07b, type: 3}
       propertyPath: m_Name
-      value: CartaVirada (1)
+      value: CartaVirada
       objectReference: {fileID: 0}
     - target: {fileID: 4976070993133363909, guid: 3cf4c6e6b6358214a9954ea7c334a07b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1501,7 +1563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316, y: -148}
+  m_AnchoredPosition: {x: 231.4, y: -33}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961855712
@@ -1863,8 +1925,9 @@ MonoBehaviour:
   inventoryPanel: {fileID: 772436643}
   trunfoPrefab: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
   txt: {fileID: 2086351883}
-  carta1: {fileID: 549130849}
-  carta2: {fileID: 84922269}
+  carta1: {fileID: 84922269}
+  carta2: {fileID: 549130849}
+  carta3: {fileID: 1592052820}
   soma1: {fileID: 834680957}
   soma2: {fileID: 1156175930}
 --- !u!4 &2065454506
@@ -2035,3 +2098,4 @@ SceneRoots:
   - {fileID: 196465793}
   - {fileID: 1631124024}
   - {fileID: 1731596643}
+  - {fileID: 847775516}

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -15,13 +14,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject carta3;
     [SerializeField] private TextMeshProUGUI soma1;
     [SerializeField] private TextMeshProUGUI soma2;
-
-
-
-    //[SerializeField] private GameObject Cartas;
-    //private GameObject[] CartasPrefab;
-    //private float xmeia;
-
     private Jogador player1;
     private Jogador player2;
     private Baralho baralho;
@@ -198,7 +190,6 @@ public class GameController : MonoBehaviour
             soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + "/21");
         else
             soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + player2.getMaoJogador()[2] + "/21");
-
 
         if (!atual.iscarta3())
         {
