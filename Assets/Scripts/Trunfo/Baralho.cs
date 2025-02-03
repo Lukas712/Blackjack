@@ -10,7 +10,7 @@ public class Baralho
     public Baralho()
     {
         cartas = new List<int>();
-        for(int i = 1; i<= 11; i+=1)
+        for (int i = 1; i <= 11; i += 1)
         {
             cartas.Add(i);
         }
@@ -19,14 +19,14 @@ public class Baralho
 
     public void EmbaralhaCartas()
     {
-         System.Random rng = new System.Random();
-        cartas = cartas.OrderBy(c => rng.Next()).ToList();
-       // cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
+        
+        cartas = cartas.OrderBy(c => Random.Range(0, cartas.Count)).ToList();
     }
 
     public int CompraCarta()
     {
-        if (cartas.Count == 0){
+        if (cartas.Count == 0)
+        {
             return -1;
         }
         int compra = cartas.First();

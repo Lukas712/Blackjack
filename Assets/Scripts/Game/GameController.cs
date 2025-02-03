@@ -188,10 +188,10 @@ public class GameController : MonoBehaviour
         soma2.text = (player2.getSoma() + "/21");
 
         CartaController c1 = carta1.GetComponent<CartaController>();
-        c1.setSprite(atual.getMaoJogador()[0]);
+        c1.setSprite(atual.getMaoJogador()[0] - 1);
 
         CartaController c2 = carta2.GetComponent<CartaController>();
-        c2.setSprite(atual.getMaoJogador()[1]);
+        c2.setSprite(atual.getMaoJogador()[1] - 1);
 
 
         Debug.Log(atual.getMaoJogador().Count + " e local " + atual.getMaoJogador().Count);
