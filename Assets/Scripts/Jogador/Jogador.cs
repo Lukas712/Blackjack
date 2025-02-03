@@ -36,7 +36,7 @@ public class Jogador
         maoJogador = new List<int>();
 
         pontosDeVida = 10;
-        betAtual = 0;
+        betAtual = 1;
         soma = 0;
         random = new System.Random();
         adicionaTrunfosAleatorios(10);
@@ -45,7 +45,13 @@ public class Jogador
 
     }
     public int getBet() { return betAtual; }
-    public void setBet(int val) { betAtual = val; }
+    public void setBet(int val) { 
+        if(val < 0)
+        {
+            val = 0;
+        }
+        betAtual = val;
+        }
 
     public int getVida() { return pontosDeVida; }
     public void setVida(int val) { pontosDeVida = val; }
@@ -81,7 +87,7 @@ public class Jogador
     }
     public bool comprarCarta(Baralho baralho)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (maoJogador.Count <= 6 && Input.GetKeyDown(KeyCode.F))
         {
             int valor = random.Next(1, 7);
             if (valor == 6)
@@ -90,8 +96,6 @@ public class Jogador
                 adicionaTrunfosAleatorios(1);
             }
             insereCarta(baralho.CompraCarta());
-            ativac3();
-
             return true;
         }
         return false;
@@ -127,14 +131,5 @@ public class Jogador
     }
 
     public int getSoma() { return soma; }
-
-
-    public bool iscarta3() { return carta3; }
-
-    public void ativac3()
-    {
-
-        carta3 = true;
-    }
 
 }

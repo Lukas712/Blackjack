@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
@@ -13,11 +14,29 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject carta1;
     [SerializeField] private GameObject carta2;
     [SerializeField] private GameObject carta3;
+    [SerializeField] private GameObject carta4;
+    [SerializeField] private GameObject carta5;
+    [SerializeField] private GameObject carta6;
+
+    [SerializeField] private GameObject cartaVirada1;
+    [SerializeField] private GameObject cartaVirada2;
+    [SerializeField] private GameObject cartaVirada3;
+    [SerializeField] private GameObject cartaVirada4;
+    [SerializeField] private GameObject cartaVirada5;
+    [SerializeField] private GameObject cartaVirada6;
     [SerializeField] private GameObject trunfosinv;
     [SerializeField] private GameObject pTrunfo1;
     [SerializeField] private GameObject pTrunfo2;
     [SerializeField] private TextMeshProUGUI soma1;
     [SerializeField] private TextMeshProUGUI soma2;
+
+    [SerializeField] private TextMeshProUGUI betUsuario;
+    [SerializeField] private TextMeshProUGUI betAdversario;
+
+    [SerializeField] private TextMeshProUGUI vidaUsuario;
+
+    [SerializeField] private TextMeshProUGUI vidaAdversario;
+
     private Jogador player1;
     private Jogador player2;
     private Baralho baralho;
@@ -31,7 +50,6 @@ public class GameController : MonoBehaviour
         baralho = new Baralho();
         player1 = new Jogador(baralho);
         player2 = new Jogador(baralho);
-        carta3.gameObject.SetActive(false);
         turn = 0;
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
@@ -42,20 +60,42 @@ public class GameController : MonoBehaviour
 
         Debug.Log("Tamanho das cartas jogador1 " + player1.getMaoJogador().Count);
         Debug.Log("Tamanho das cartas jogador2 " + player2.getMaoJogador().Count);
-        offTrunfoinv(trunfosinv);
+        // offTrunfoinv(trunfosinv);
         pTrunfo1.gameObject.SetActive(false);
         pTrunfo2.gameObject.SetActive(false);
 
+        carta3.gameObject.SetActive(false);
+        carta4.gameObject.SetActive(false);
+        carta5.gameObject.SetActive(false);
+        carta6.gameObject.SetActive(false);
+
+        cartaVirada3.gameObject.SetActive(false);
+        cartaVirada4.gameObject.SetActive(false);
+        cartaVirada5.gameObject.SetActive(false);
+        cartaVirada6.gameObject.SetActive(false);
     }
 
     void Update()
     {
         player1.calculaMao();
         player2.calculaMao();
+        Jogador atual = (turn == 0 ? player1 : player2);
+        Jogador oponente = (turn == 0 ? player2 : player1);
+        
+
+        soma1.text = atual.getSoma().ToString() + "/21";
+        soma2.text = oponente.getSoma().ToString() + "/21";
+
+        betUsuario.text = "Bet: " + atual.getBet().ToString();
+        betAdversario.text = "Bet: " + oponente.getBet().ToString();
+        
+        vidaUsuario.text = "Vida: " + atual.getVida().ToString();
+        vidaAdversario.text = "Vida: " + oponente.getVida().ToString();
 
         if (contaPasse != 2)
         {
-            Jogador atual = (turn == 0 ? player1 : player2);
+            
+            
 
             if (atual.abrirInventario())
             {
@@ -79,53 +119,75 @@ public class GameController : MonoBehaviour
                 contaPasse += 1;
 
             }
-            desenhaTela(atual);
+            
         }
         else
         {
             int somaPlayer1 = metaJogo - player1.getSoma();
             int somaPlayer2 = metaJogo - player2.getSoma();
 
-            if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
+            int vidaPlayer1 = player1.getVida();
+            int vidaPlayer2 = player2.getVida();
+
+            int betPlayer1 = player1.getBet();
+            int betPlayer2 = player2.getBet();            
+
+            if(player1.getVida() == 0 || player2.getVida() == 0)
+            {
+                txt.text = "O vencedor foi o: " + (turn == 0 ? "Jogador 1" : "Jogador 2");
+            }
+            else if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
             {
                 if (somaPlayer1 < somaPlayer2)
                 {
-                    txt.text = "Vencedor foi o jogador 1";
+                    txt.text = "Vencedor da rodada foi o jogador 1";
+                    player2.setVida(vidaPlayer2 - betPlayer1);
                 }
                 else if (somaPlayer1 > somaPlayer2)
                 {
-                    txt.text = "Vencedor foi o jogador 2";
+                    txt.text = "Vencedor da rodada foi o jogador 2";
+                    player1.setVida(vidaPlayer1 - betPlayer2);
                 }
                 else
                 {
                     txt.text = "Empate";
                 }
+                contaPasse = 0;
             }
             else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
             {
-                txt.text = "Vencedor foi o jogador 2";
+                txt.text = "Vencedor da rodada foi o jogador 2";
+                player1.setVida(vidaPlayer1 - betPlayer2);
+                contaPasse = 0;
             }
             else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
             {
-                txt.text = "Vencedor foi o jogador 1";
+                txt.text = "Vencedor da rodada foi o jogador 1";
+                player2.setVida(vidaPlayer2 - betPlayer1);
+                contaPasse = 0;
             }
             else
             {
                 if (somaPlayer1 > somaPlayer2)
                 {
-                    txt.text = "Vencedor foi o jogador 1";
+                    txt.text = "Vencedor da rodada foi o jogador 1";
+                    player2.setVida(vidaPlayer2 - betPlayer1);
                 }
                 else if (somaPlayer1 < somaPlayer2)
                 {
-                    txt.text = "Vencedor foi o jogador 2";
+                    txt.text = "Vencedor da rodada foi o jogador 2";
+                    player1.setVida(vidaPlayer1 - betPlayer2);
                 }
                 else
                 {
                     txt.text = "Empate";
                 }
+                contaPasse = 0;
             }
         }
 
+
+        desenhaTela(atual);
         if (!inventoryPanel.activeSelf)
             offTrunfoinv(trunfosinv);
 
@@ -183,7 +245,7 @@ public class GameController : MonoBehaviour
     {
         turn = (turn == 0) ? 1 : 0;
         txt.text = "Seu Turno ";
-        txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
+        txt.text += (turn == 0 ? "Jogador 2" : "Jogador 1");
         atual = (turn == 0 ? player1 : player2);
     }
 
@@ -191,60 +253,72 @@ public class GameController : MonoBehaviour
 
     void desenhaTela(Jogador atual)
     {
-        atual.calculaMao();
+        CartaController c1 = carta1.GetComponent<CartaController>();
+        c1.setSprite(atual.getMaoJogador()[0] - 1);
 
+        CartaController c2 = carta2.GetComponent<CartaController>();
+        c2.setSprite(atual.getMaoJogador()[1] - 1);
 
-
-        if (!player1.iscarta3())
-            soma1.text = (player1.getMaoJogador()[1] + player1.getMaoJogador()[0] + "/21");
-        else
-            soma1.text = (player1.getMaoJogador()[1] + player1.getMaoJogador()[0] + player1.getMaoJogador()[2] + "/21");
-
-
-        if (!player2.iscarta3())
-            soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + "/21");
-        else
-            soma2.text = (player2.getMaoJogador()[1] + player2.getMaoJogador()[0] + player2.getMaoJogador()[2] + "/21");
-
-        if (!atual.iscarta3())
+        if(atual.getMaoJogador().Count == 3)
         {
-
-
-
-            CartaController c1 = carta1.GetComponent<CartaController>();
-            c1.setSprite(atual.getMaoJogador()[0] - 1);
-
-            CartaController c2 = carta2.GetComponent<CartaController>();
-            c2.setSprite(atual.getMaoJogador()[1] - 1);
-            carta3.gameObject.SetActive(false);
-        }
-        else
-        {
-
-
-
             carta3.gameObject.SetActive(true);
-            CartaController c1 = carta1.GetComponent<CartaController>();
-            c1.setSprite(atual.getMaoJogador()[0] - 1);
-
-            CartaController c2 = carta2.GetComponent<CartaController>();
-            c2.setSprite(atual.getMaoJogador()[1] - 1);
-
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
-
-
+        }
+        else if(atual.getMaoJogador().Count == 4)
+        {
+            carta4.gameObject.SetActive(true);
+            CartaController c4 = carta4.GetComponent<CartaController>();
+            c4.setSprite(atual.getMaoJogador()[3] - 1);
+        }
+        else if(atual.getMaoJogador().Count == 5)
+        {
+            carta5.gameObject.SetActive(true);
+            CartaController c5 = carta5.GetComponent<CartaController>();
+            c5.setSprite(atual.getMaoJogador()[4] - 1);
+        }
+        else if(atual.getMaoJogador().Count == 6)
+        {
+            carta6.gameObject.SetActive(true);
+            CartaController c6 = carta6.GetComponent<CartaController>();
+            c6.setSprite(atual.getMaoJogador()[5] - 1);
+        }
+        else
+        {   
+            carta3.gameObject.SetActive(false);
+            carta4.gameObject.SetActive(false);
+            carta5.gameObject.SetActive(false);
+            carta6.gameObject.SetActive(false);
         }
 
+        Jogador oponente = (turn == 0 ? player2 : player1);
 
-        Debug.Log(atual.getMaoJogador().Count + " e local " + atual.getMaoJogador().Count);
-        if (atual.getMaoJogador().Count > 2)
-            Debug.Log("Soma das cartas eh " + (atual.getMaoJogador()[1] + atual.getMaoJogador()[0] + atual.getMaoJogador()[2]));
-        Debug.Log(atual.getSoma());
-        if (atual.getMaoJogador().Count > 2)
-            Debug.Log("3 carta eh " + atual.getMaoJogador()[2]);
-
-
+        if(oponente.getMaoJogador().Count == 3)
+        {
+            cartaVirada3.gameObject.SetActive(true);
+            
+        }
+        else if(oponente.getMaoJogador().Count == 4)
+        {
+            cartaVirada4.gameObject.SetActive(true);
+            
+        }
+        else if(oponente.getMaoJogador().Count == 5)
+        {
+            cartaVirada5.gameObject.SetActive(true);
+           
+        }
+        else if(oponente.getMaoJogador().Count == 6)
+        {
+            cartaVirada6.gameObject.SetActive(true);
+        }
+        else
+        {
+            cartaVirada3.gameObject.SetActive(false);
+            cartaVirada4.gameObject.SetActive(false);
+            cartaVirada5.gameObject.SetActive(false);
+            cartaVirada6.gameObject.SetActive(false);
+        }
     }
 
 
