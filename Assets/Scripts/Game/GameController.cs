@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -200,7 +201,7 @@ public class GameController : MonoBehaviour
 
         }
 
-
+       
 
 
     }
@@ -372,6 +373,11 @@ public class GameController : MonoBehaviour
         {
             filho.gameObject.SetActive(true);
         }
+    }
+
+    private void resetarCena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
