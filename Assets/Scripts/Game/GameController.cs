@@ -267,6 +267,7 @@ public class GameController : MonoBehaviour
         }
         else if (atual.getMaoJogador().Count == 4)
         {
+            carta3.gameObject.SetActive(true);
             carta4.gameObject.SetActive(true);
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
@@ -275,6 +276,8 @@ public class GameController : MonoBehaviour
         }
         else if (atual.getMaoJogador().Count == 5)
         {
+            carta3.gameObject.SetActive(true);
+            carta4.gameObject.SetActive(true);
             carta5.gameObject.SetActive(true);
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
@@ -285,6 +288,9 @@ public class GameController : MonoBehaviour
         }
         else if (atual.getMaoJogador().Count == 6)
         {
+            carta3.gameObject.SetActive(true);
+            carta4.gameObject.SetActive(true);
+            carta5.gameObject.SetActive(true);
             carta6.gameObject.SetActive(true);
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
@@ -312,16 +318,21 @@ public class GameController : MonoBehaviour
         }
         else if (oponente.getMaoJogador().Count == 4)
         {
+            cartaVirada3.gameObject.SetActive(true);
             cartaVirada4.gameObject.SetActive(true);
 
         }
         else if (oponente.getMaoJogador().Count == 5)
         {
+            cartaVirada3.gameObject.SetActive(true);
+            cartaVirada4.gameObject.SetActive(true);
             cartaVirada5.gameObject.SetActive(true);
 
         }
         else if (oponente.getMaoJogador().Count == 6)
         {
+            cartaVirada3.gameObject.SetActive(true);
+            cartaVirada4.gameObject.SetActive(true);
             cartaVirada6.gameObject.SetActive(true);
         }
         else
@@ -331,7 +342,7 @@ public class GameController : MonoBehaviour
             cartaVirada5.gameObject.SetActive(false);
             cartaVirada6.gameObject.SetActive(false);
         }
-        
+        Debug.Log("Mao do jogador " + atual.getMaoJogador().Count);
     }
 
 
