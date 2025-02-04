@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI vidaUsuario;
 
     [SerializeField] private TextMeshProUGUI vidaAdversario;
+    private Jogador atual;
 
     private Jogador player1;
     private Jogador player2;
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour
     private int turn;
     private int contaPasse;
     private int metaJogo;
+    private Jogador oponente;
 
     void Start()
     {
@@ -79,8 +81,8 @@ public class GameController : MonoBehaviour
     {
         player1.calculaMao();
         player2.calculaMao();
-        Jogador atual = (turn == 0 ? player1 : player2);
-        Jogador oponente = (turn == 0 ? player2 : player1);
+        atual = (turn == 0 ? player1 : player2);
+        oponente = (turn == 0 ? player2 : player1);
 
 
         soma1.text = atual.getSoma().ToString() + "/21";
@@ -117,7 +119,6 @@ public class GameController : MonoBehaviour
                 }
                 passarVez(atual);
                 contaPasse += 1;
-
             }
 
         }
@@ -190,6 +191,17 @@ public class GameController : MonoBehaviour
         desenhaTela(atual);
         if (!inventoryPanel.activeSelf)
             offTrunfoinv(trunfosinv);
+        if (Input.GetKeyDown("e"))
+        {
+            TrunfoInvController a = trunfosinv.transform.GetChild(1).GetComponent<TrunfoInvController>();
+
+            a.reseta();
+
+
+        }
+
+
+
 
     }
 
@@ -342,7 +354,7 @@ public class GameController : MonoBehaviour
             cartaVirada5.gameObject.SetActive(false);
             cartaVirada6.gameObject.SetActive(false);
         }
-        Debug.Log("Mao do jogador " + atual.getMaoJogador().Count);
+        // Debug.Log("Mao do jogador " + atual.getMaoJogador().Count);
     }
 
 
@@ -361,4 +373,12 @@ public class GameController : MonoBehaviour
             filho.gameObject.SetActive(true);
         }
     }
+
+
+    public Jogador GetpAtual() { return this.atual; }
+
+    public Baralho GetBaralho() { return this.baralho; }
+
+    public Jogador GetOponente() { return this.oponente; }
+
 }

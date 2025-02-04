@@ -40,9 +40,6 @@ public class CartaController : MonoBehaviour
     }
     void OnMouseExit()
     {
-
-
-
         if (!segurando)
             transform.position = pos;
     }
