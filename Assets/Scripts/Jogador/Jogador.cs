@@ -45,13 +45,14 @@ public class Jogador
 
     }
     public int getBet() { return betAtual; }
-    public void setBet(int val) { 
-        if(val < 0)
+    public void setBet(int val)
+    {
+        if (val < 0)
         {
             val = 0;
         }
         betAtual = val;
-        }
+    }
 
     public int getVida() { return pontosDeVida; }
     public void setVida(int val) { pontosDeVida = val; }
@@ -87,7 +88,7 @@ public class Jogador
     }
     public bool comprarCarta(Baralho baralho)
     {
-        if (maoJogador.Count <= 6 && Input.GetKeyDown(KeyCode.F))
+        if (maoJogador.Count < 6 && Input.GetKeyDown(KeyCode.F))
         {
             int valor = random.Next(1, 7);
             if (valor == 6)

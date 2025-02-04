@@ -331,6 +331,7 @@ public class GameController : MonoBehaviour
             cartaVirada5.gameObject.SetActive(false);
             cartaVirada6.gameObject.SetActive(false);
         }
+        
     }
 
 

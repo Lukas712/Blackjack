@@ -35,7 +35,7 @@ public class CartaController : MonoBehaviour
         if (!segurando)
             transform.position = pos + new UnityEngine.Vector3(0, 0.3f, 0);
 
-        Debug.Log("Colidiu");
+        //Debug.Log("Colidiu");
 
     }
     void OnMouseExit()
