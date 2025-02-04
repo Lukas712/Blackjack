@@ -81,21 +81,21 @@ public class GameController : MonoBehaviour
         player2.calculaMao();
         Jogador atual = (turn == 0 ? player1 : player2);
         Jogador oponente = (turn == 0 ? player2 : player1);
-        
+
 
         soma1.text = atual.getSoma().ToString() + "/21";
         soma2.text = oponente.getSoma().ToString() + "/21";
 
         betUsuario.text = "Bet: " + atual.getBet().ToString();
         betAdversario.text = "Bet: " + oponente.getBet().ToString();
-        
+
         vidaUsuario.text = "Vida: " + atual.getVida().ToString();
         vidaAdversario.text = "Vida: " + oponente.getVida().ToString();
 
         if (contaPasse != 2)
         {
-            
-            
+
+
 
             if (atual.abrirInventario())
             {
@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour
                 contaPasse += 1;
 
             }
-            
+
         }
         else
         {
@@ -130,9 +130,9 @@ public class GameController : MonoBehaviour
             int vidaPlayer2 = player2.getVida();
 
             int betPlayer1 = player1.getBet();
-            int betPlayer2 = player2.getBet();            
+            int betPlayer2 = player2.getBet();
 
-            if(player1.getVida() == 0 || player2.getVida() == 0)
+            if (player1.getVida() == 0 || player2.getVida() == 0)
             {
                 txt.text = "O vencedor foi o: " + (turn == 0 ? "Jogador 1" : "Jogador 2");
             }
@@ -259,32 +259,44 @@ public class GameController : MonoBehaviour
         CartaController c2 = carta2.GetComponent<CartaController>();
         c2.setSprite(atual.getMaoJogador()[1] - 1);
 
-        if(atual.getMaoJogador().Count == 3)
+        if (atual.getMaoJogador().Count == 3)
         {
             carta3.gameObject.SetActive(true);
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
         }
-        else if(atual.getMaoJogador().Count == 4)
+        else if (atual.getMaoJogador().Count == 4)
         {
             carta4.gameObject.SetActive(true);
+            CartaController c3 = carta3.GetComponent<CartaController>();
+            c3.setSprite(atual.getMaoJogador()[2] - 1);
             CartaController c4 = carta4.GetComponent<CartaController>();
             c4.setSprite(atual.getMaoJogador()[3] - 1);
         }
-        else if(atual.getMaoJogador().Count == 5)
+        else if (atual.getMaoJogador().Count == 5)
         {
             carta5.gameObject.SetActive(true);
+            CartaController c3 = carta3.GetComponent<CartaController>();
+            c3.setSprite(atual.getMaoJogador()[2] - 1);
+            CartaController c4 = carta4.GetComponent<CartaController>();
+            c4.setSprite(atual.getMaoJogador()[3] - 1);
             CartaController c5 = carta5.GetComponent<CartaController>();
             c5.setSprite(atual.getMaoJogador()[4] - 1);
         }
-        else if(atual.getMaoJogador().Count == 6)
+        else if (atual.getMaoJogador().Count == 6)
         {
             carta6.gameObject.SetActive(true);
+            CartaController c3 = carta3.GetComponent<CartaController>();
+            c3.setSprite(atual.getMaoJogador()[2] - 1);
+            CartaController c4 = carta4.GetComponent<CartaController>();
+            c4.setSprite(atual.getMaoJogador()[3] - 1);
+            CartaController c5 = carta5.GetComponent<CartaController>();
+            c5.setSprite(atual.getMaoJogador()[4] - 1);
             CartaController c6 = carta6.GetComponent<CartaController>();
             c6.setSprite(atual.getMaoJogador()[5] - 1);
         }
         else
-        {   
+        {
             carta3.gameObject.SetActive(false);
             carta4.gameObject.SetActive(false);
             carta5.gameObject.SetActive(false);
@@ -293,22 +305,22 @@ public class GameController : MonoBehaviour
 
         Jogador oponente = (turn == 0 ? player2 : player1);
 
-        if(oponente.getMaoJogador().Count == 3)
+        if (oponente.getMaoJogador().Count == 3)
         {
             cartaVirada3.gameObject.SetActive(true);
-            
+
         }
-        else if(oponente.getMaoJogador().Count == 4)
+        else if (oponente.getMaoJogador().Count == 4)
         {
             cartaVirada4.gameObject.SetActive(true);
-            
+
         }
-        else if(oponente.getMaoJogador().Count == 5)
+        else if (oponente.getMaoJogador().Count == 5)
         {
             cartaVirada5.gameObject.SetActive(true);
-           
+
         }
-        else if(oponente.getMaoJogador().Count == 6)
+        else if (oponente.getMaoJogador().Count == 6)
         {
             cartaVirada6.gameObject.SetActive(true);
         }
