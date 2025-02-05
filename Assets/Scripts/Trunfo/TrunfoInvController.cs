@@ -51,7 +51,6 @@ public class TrunfoInvController : MonoBehaviour
                 }
                 usado = true;
                 cont++;
-                GerarNovoRandom();
                 setSprite();
             }
         }
