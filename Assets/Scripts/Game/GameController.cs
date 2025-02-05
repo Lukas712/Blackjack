@@ -102,13 +102,13 @@ public class GameController : MonoBehaviour
         vidaAdversario.text = "Vida: " + oponente.getVida().ToString();
 
 
-        if(player1.getVida() ==0 || player2.getVida() == 0)
+        if (player1.getVida() == 0 || player2.getVida() == 0)
         {
             txt.text = "O vencedor foi o " + (turn == 0 ? "Jogador 1" : "Jogador 2");
             new WaitForSeconds(3f);
             resetarCena();
         }
-        if(acaoBloqueada)
+        if (acaoBloqueada)
         {
             return;
         }
@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour
         {
             StartCoroutine(DelayParaNovaRodada());
             contaPasse = 0;
-            if(turn != 0)
+            if (turn != 0)
             {
                 atual = player1;
                 oponente = player2;
@@ -151,97 +151,100 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            TrunfoInvController a = trunfosinv.transform.GetChild(1).GetComponent<TrunfoInvController>();
-
-            a.reseta();
+            foreach (Transform obj in trunfosinv.transform)
+            {
+                TrunfoInvController temp = obj.GetComponent<TrunfoInvController>();
+                if (obj != null)
+                    temp.reseta();
+            }
         }
-        
+
 
     }
 
     IEnumerator DelayParaNovaRodada()
     {
         acaoBloqueada = true;
-            int somaPlayer1 = metaJogo - player1.getSoma();
-            int somaPlayer2 = metaJogo - player2.getSoma();
+        int somaPlayer1 = metaJogo - player1.getSoma();
+        int somaPlayer2 = metaJogo - player2.getSoma();
 
-            int vidaPlayer1 = player1.getVida();
-            int vidaPlayer2 = player2.getVida();
+        int vidaPlayer1 = player1.getVida();
+        int vidaPlayer2 = player2.getVida();
 
-            int betPlayer1 = player1.getBet();
-            int betPlayer2 = player2.getBet();
+        int betPlayer1 = player1.getBet();
+        int betPlayer2 = player2.getBet();
 
-            if (player1.getVida() == 0 || player2.getVida() == 0)
-            {
-                txt.text = "O vencedor foi o: " + (turn == 0 ? "Jogador 1" : "Jogador 2");
-                yield return new WaitForSecondsRealtime(3f);
-                resetarCena();
-            }
-            if(somaPlayer1 == somaPlayer2)
-            {
-                    txt.text = "Empate";
-                    yield return new WaitForSecondsRealtime(3f);
-            }
-            else if (somaPlayer1 > 0 && somaPlayer2 > 0)
-            {
-                if (somaPlayer1 < somaPlayer2)
-                {
-                    txt.text = "Vencedor da rodada foi o jogador 1";
-                    player2.setVida(vidaPlayer2 - betPlayer2);
-                    yield return new WaitForSecondsRealtime(3f);
-
-                }
-                else
-                {
-                    txt.text = "Vencedor da rodada foi o jogador 2";
-                    player1.setVida(vidaPlayer1 - betPlayer1);
-                    yield return new WaitForSecondsRealtime(3f);
-
-                }
-                
-            }
-            else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
-            {
-                txt.text = "Vencedor da rodada foi o jogador 2";
-                player1.setVida(vidaPlayer1 - betPlayer1);
-                yield return new WaitForSecondsRealtime(3f);
-            }
-            else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
+        if (player1.getVida() == 0 || player2.getVida() == 0)
+        {
+            txt.text = "O vencedor foi o: " + (turn == 0 ? "Jogador 1" : "Jogador 2");
+            yield return new WaitForSecondsRealtime(3f);
+            resetarCena();
+        }
+        if (somaPlayer1 == somaPlayer2)
+        {
+            txt.text = "Empate";
+            yield return new WaitForSecondsRealtime(3f);
+        }
+        else if (somaPlayer1 > 0 && somaPlayer2 > 0)
+        {
+            if (somaPlayer1 < somaPlayer2)
             {
                 txt.text = "Vencedor da rodada foi o jogador 1";
                 player2.setVida(vidaPlayer2 - betPlayer2);
                 yield return new WaitForSecondsRealtime(3f);
+
             }
             else
             {
-                if (somaPlayer1 > somaPlayer2)
-                {
-                    txt.text = "Vencedor da rodada foi o jogador 1";
-                    player2.setVida(vidaPlayer2 - betPlayer2);
-                    yield return new WaitForSecondsRealtime(3f);
+                txt.text = "Vencedor da rodada foi o jogador 2";
+                player1.setVida(vidaPlayer1 - betPlayer1);
+                yield return new WaitForSecondsRealtime(3f);
 
-                }
-                else if (somaPlayer1 < somaPlayer2)
-                {
-                    txt.text = "Vencedor da rodada foi o jogador 2";
-                    player1.setVida(vidaPlayer1 - betPlayer1);
-                    yield return new WaitForSecondsRealtime(3f);
-
-                }
-                else
-                {
-                    txt.text = "Empate";
-                    yield return new WaitForSecondsRealtime(3f);
-
-                }
             }
-            baralho = new Baralho();
-            player1.reseta(baralho);
-            player2.reseta(baralho);
-            player1.setBet(1);
-            player2.setBet(1);
-            txt.text = "Seu Turno " +  (turn == 0 ? "Jogador 1" : "Jogador 2");
-            acaoBloqueada = false;
+
+        }
+        else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
+        {
+            txt.text = "Vencedor da rodada foi o jogador 2";
+            player1.setVida(vidaPlayer1 - betPlayer1);
+            yield return new WaitForSecondsRealtime(3f);
+        }
+        else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
+        {
+            txt.text = "Vencedor da rodada foi o jogador 1";
+            player2.setVida(vidaPlayer2 - betPlayer2);
+            yield return new WaitForSecondsRealtime(3f);
+        }
+        else
+        {
+            if (somaPlayer1 > somaPlayer2)
+            {
+                txt.text = "Vencedor da rodada foi o jogador 1";
+                player2.setVida(vidaPlayer2 - betPlayer2);
+                yield return new WaitForSecondsRealtime(3f);
+
+            }
+            else if (somaPlayer1 < somaPlayer2)
+            {
+                txt.text = "Vencedor da rodada foi o jogador 2";
+                player1.setVida(vidaPlayer1 - betPlayer1);
+                yield return new WaitForSecondsRealtime(3f);
+
+            }
+            else
+            {
+                txt.text = "Empate";
+                yield return new WaitForSecondsRealtime(3f);
+
+            }
+        }
+        baralho = new Baralho();
+        player1.reseta(baralho);
+        player2.reseta(baralho);
+        player1.setBet(1);
+        player2.setBet(1);
+        txt.text = "Seu Turno " + (turn == 0 ? "Jogador 1" : "Jogador 2");
+        acaoBloqueada = false;
     }
 
     public void ToggleInventory(Jogador atual)
@@ -283,7 +286,7 @@ public class GameController : MonoBehaviour
         if (atual.getMaoJogador().Count == 3)
         {
             carta3.gameObject.SetActive(true);
-            
+
 
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
@@ -379,7 +382,7 @@ public class GameController : MonoBehaviour
 
     public Jogador GetOponente() { return (turn == 0 ? player2 : player1); }
 
-    public int getLifePlayer(){return (turn == 0 ? player1.getVida() : player2.getVida());}
-    public int getLifeAdversario(){return (turn == 0 ? player2.getVida() : player1.getVida());}
+    public int getLifePlayer() { return (turn == 0 ? player1.getVida() : player2.getVida()); }
+    public int getLifeAdversario() { return (turn == 0 ? player2.getVida() : player1.getVida()); }
 
 }
