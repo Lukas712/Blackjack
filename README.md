@@ -82,3 +82,9 @@ Divirta-se e teste suas habilidades estratégicas neste jogo único de cartas!
 - Vinicius Oliveira De Matos Martins
 - Rafael Rosa Machado Gawryszewski
 - Yan de Castro Mariano
+ 
+ ---
+ ### Créditos
+ -Fonte utlizada na tela de início do jogo:CopyDuck
+ -Autor:Khurasan
+ -Disponível em:https://www.dafont.com/copyduck.font
