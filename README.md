@@ -75,3 +75,10 @@ As regras são simples, mas estratégicas. Confira:
 ---
 
 Divirta-se e teste suas habilidades estratégicas neste jogo único de cartas!  
+
+---
+### Participantes 👥
+- Lukas Freitas de Carvalho
+- Vinicius Oliveira De Matos Martins
+- Rafael Rosa Machado Gawryszewski
+- Yan de Castro Mariano
