@@ -15,6 +15,5 @@ public class TrocarCena : MonoBehaviour
     public void sair()
     {
         Application.Quit();
-        EditorApplication.ExitPlaymode();
     }
 }
