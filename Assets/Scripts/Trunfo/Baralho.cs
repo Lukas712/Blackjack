@@ -34,4 +34,13 @@ public class Baralho
         cartas.RemoveAt(0);
         return compra;
     }
+
+    public int getCarta(int val)
+    {
+        if(cartas.Remove(val))
+        {
+            return val;
+        }
+        return -1;
+    }
 }

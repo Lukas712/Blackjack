@@ -4,7 +4,7 @@ public class CompraCinco : Trunfo
 {
     public override void efeitoTrunfo(Baralho baralho, Jogador usuario, Jogador adversario)
     {
-        // usuario.insereCarta(baralho.getCarta(5))
+        usuario.insereCarta(baralho.getCarta(5));
     }
 
     public override string descricaoTrunfo()

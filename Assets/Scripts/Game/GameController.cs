@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-using System.Linq;
+
+using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject trunfoPrefab;
+    [SerializeField] private GameObject descricaoTrunfo;
     [SerializeField] private TextMeshProUGUI txt;
     [SerializeField] private GameObject carta1;
     [SerializeField] private GameObject carta2;
@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject carta4;
     [SerializeField] private GameObject carta5;
     [SerializeField] private GameObject carta6;
+    [SerializeField] private string cena;
 
     [SerializeField] private GameObject cartaVirada1;
     [SerializeField] private GameObject cartaVirada2;
@@ -28,6 +29,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject trunfosinv;
     [SerializeField] private GameObject pTrunfo1;
     [SerializeField] private GameObject pTrunfo2;
+    [SerializeField] private GameObject pTrunfo3;
+    [SerializeField] private GameObject pTrunfo4;
+
     [SerializeField] private TextMeshProUGUI soma1;
     [SerializeField] private TextMeshProUGUI soma2;
 
@@ -37,7 +41,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI vidaUsuario;
 
     [SerializeField] private TextMeshProUGUI vidaAdversario;
-    private Jogador atual;
 
     private Jogador player1;
     private Jogador player2;
@@ -45,7 +48,7 @@ public class GameController : MonoBehaviour
     private int turn;
     private int contaPasse;
     private int metaJogo;
-    private Jogador oponente;
+    private bool acaoBloqueada;
 
     void Start()
     {
@@ -53,6 +56,7 @@ public class GameController : MonoBehaviour
         baralho = new Baralho();
         player1 = new Jogador(baralho);
         player2 = new Jogador(baralho);
+        acaoBloqueada = false;
         turn = 0;
         contaPasse = 0;
         txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
@@ -66,6 +70,8 @@ public class GameController : MonoBehaviour
         // offTrunfoinv(trunfosinv);
         pTrunfo1.gameObject.SetActive(false);
         pTrunfo2.gameObject.SetActive(false);
+        pTrunfo3.gameObject.SetActive(false);
+        pTrunfo4.gameObject.SetActive(false);
 
         carta3.gameObject.SetActive(false);
         carta4.gameObject.SetActive(false);
@@ -82,12 +88,12 @@ public class GameController : MonoBehaviour
     {
         player1.calculaMao();
         player2.calculaMao();
-        atual = (turn == 0 ? player1 : player2);
-        oponente = (turn == 0 ? player2 : player1);
-
+        Jogador atual = (turn == 0 ? player1 : player2);
+        Jogador oponente = (turn == 0 ? player2 : player1);
+        desenhaTela(atual);
 
         soma1.text = atual.getSoma().ToString() + "/21";
-        soma2.text = oponente.getSoma().ToString() + "/21";
+        soma2.text = "?/21";
 
         betUsuario.text = "Bet: " + atual.getBet().ToString();
         betAdversario.text = "Bet: " + oponente.getBet().ToString();
@@ -95,11 +101,19 @@ public class GameController : MonoBehaviour
         vidaUsuario.text = "Vida: " + atual.getVida().ToString();
         vidaAdversario.text = "Vida: " + oponente.getVida().ToString();
 
+
+        if(player1.getVida() ==0 || player2.getVida() == 0)
+        {
+            txt.text = "O vencedor foi o " + (turn == 0 ? "Jogador 1" : "Jogador 2");
+            new WaitForSeconds(3f);
+            resetarCena();
+        }
+        if(acaoBloqueada)
+        {
+            return;
+        }
         if (contaPasse != 2)
         {
-
-
-
             if (atual.abrirInventario())
             {
                 ToggleInventory(atual);
@@ -109,6 +123,7 @@ public class GameController : MonoBehaviour
             if (atual.comprarCarta(baralho))
             {
                 contaPasse = 0;
+                desenhaTela(atual);
             }
 
             if (atual.passarVez())
@@ -116,15 +131,37 @@ public class GameController : MonoBehaviour
                 if (inventoryPanel.activeSelf)
                 {
                     ToggleInventory(atual);
-                    offTrunfoinv(trunfosinv);
                 }
                 passarVez(atual);
+                desenhaTela(atual);
                 contaPasse += 1;
             }
 
         }
         else
         {
+            StartCoroutine(DelayParaNovaRodada());
+            contaPasse = 0;
+            if(turn != 0)
+            {
+                atual = player1;
+                oponente = player2;
+            }
+        }
+
+        if (Input.GetKeyDown("e"))
+        {
+            TrunfoInvController a = trunfosinv.transform.GetChild(1).GetComponent<TrunfoInvController>();
+
+            a.reseta();
+        }
+        
+
+    }
+
+    IEnumerator DelayParaNovaRodada()
+    {
+        acaoBloqueada = true;
             int somaPlayer1 = metaJogo - player1.getSoma();
             int somaPlayer2 = metaJogo - player2.getSoma();
 
@@ -137,135 +174,106 @@ public class GameController : MonoBehaviour
             if (player1.getVida() == 0 || player2.getVida() == 0)
             {
                 txt.text = "O vencedor foi o: " + (turn == 0 ? "Jogador 1" : "Jogador 2");
+                yield return new WaitForSecondsRealtime(3f);
+                resetarCena();
             }
-            else if (somaPlayer1 >= 0 && somaPlayer2 >= 0)
+            if(somaPlayer1 == somaPlayer2)
+            {
+                    txt.text = "Empate";
+                    yield return new WaitForSecondsRealtime(3f);
+            }
+            else if (somaPlayer1 > 0 && somaPlayer2 > 0)
             {
                 if (somaPlayer1 < somaPlayer2)
                 {
                     txt.text = "Vencedor da rodada foi o jogador 1";
-                    player2.setVida(vidaPlayer2 - betPlayer1);
-                }
-                else if (somaPlayer1 > somaPlayer2)
-                {
-                    txt.text = "Vencedor da rodada foi o jogador 2";
-                    player1.setVida(vidaPlayer1 - betPlayer2);
+                    player2.setVida(vidaPlayer2 - betPlayer2);
+                    yield return new WaitForSecondsRealtime(3f);
+
                 }
                 else
                 {
-                    txt.text = "Empate";
+                    txt.text = "Vencedor da rodada foi o jogador 2";
+                    player1.setVida(vidaPlayer1 - betPlayer1);
+                    yield return new WaitForSecondsRealtime(3f);
+
                 }
-                contaPasse = 0;
+                
             }
             else if (somaPlayer1 < 0 && somaPlayer2 >= 0)
             {
                 txt.text = "Vencedor da rodada foi o jogador 2";
-                player1.setVida(vidaPlayer1 - betPlayer2);
-                contaPasse = 0;
+                player1.setVida(vidaPlayer1 - betPlayer1);
+                yield return new WaitForSecondsRealtime(3f);
             }
             else if (somaPlayer2 < 0 && somaPlayer1 >= 0)
             {
                 txt.text = "Vencedor da rodada foi o jogador 1";
-                player2.setVida(vidaPlayer2 - betPlayer1);
-                contaPasse = 0;
+                player2.setVida(vidaPlayer2 - betPlayer2);
+                yield return new WaitForSecondsRealtime(3f);
             }
             else
             {
                 if (somaPlayer1 > somaPlayer2)
                 {
                     txt.text = "Vencedor da rodada foi o jogador 1";
-                    player2.setVida(vidaPlayer2 - betPlayer1);
+                    player2.setVida(vidaPlayer2 - betPlayer2);
+                    yield return new WaitForSecondsRealtime(3f);
+
                 }
                 else if (somaPlayer1 < somaPlayer2)
                 {
                     txt.text = "Vencedor da rodada foi o jogador 2";
-                    player1.setVida(vidaPlayer1 - betPlayer2);
+                    player1.setVida(vidaPlayer1 - betPlayer1);
+                    yield return new WaitForSecondsRealtime(3f);
+
                 }
                 else
                 {
                     txt.text = "Empate";
+                    yield return new WaitForSecondsRealtime(3f);
+
                 }
-                contaPasse = 0;
             }
-        }
-
-
-        desenhaTela(atual);
-        if (!inventoryPanel.activeSelf)
-            offTrunfoinv(trunfosinv);
-        if (Input.GetKeyDown("e"))
-        {
-            TrunfoInvController a = trunfosinv.transform.GetChild(1).GetComponent<TrunfoInvController>();
-
-            a.reseta();
-
-
-        }
-
-       
-
-
+            baralho = new Baralho();
+            player1.reseta(baralho);
+            player2.reseta(baralho);
+            player1.setBet(1);
+            player2.setBet(1);
+            txt.text = "Seu Turno " +  (turn == 0 ? "Jogador 1" : "Jogador 2");
+            acaoBloqueada = false;
     }
 
     public void ToggleInventory(Jogador atual)
     {
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
-
-
-
-        if (!isActive)
-        {
-            AtualizarInventario(atual);
-
-        }
     }
-
-
-    public void AtualizarInventario(Jogador atual)
-    {
-        LimparInventario();
-
-        foreach (var trunfo in atual.getInventarioJogador())
-        {
-            if (trunfoPrefab != null && inventoryPanel != null)
-            {
-                GameObject trunfoObj = Instantiate(trunfoPrefab, inventoryPanel.transform);
-
-                TextMeshProUGUI trunfoText = trunfoObj.GetComponentInChildren<TextMeshProUGUI>();
-                if (trunfoText != null)
-                {
-                    trunfoText.text = trunfo.GetType().Name;
-                }
-            }
-        }
-    }
-
-
-
-    void LimparInventario()
-    {
-        if (inventoryPanel != null)
-        {
-            foreach (Transform child in inventoryPanel.transform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
 
     void passarVez(Jogador atual)
     {
         turn = (turn == 0) ? 1 : 0;
         txt.text = "Seu Turno ";
-        txt.text += (turn == 0 ? "Jogador 2" : "Jogador 1");
+        txt.text += (turn == 0 ? "Jogador 1" : "Jogador 2");
         atual = (turn == 0 ? player1 : player2);
     }
 
 
+    void limpaTela()
+    {
+        carta3.gameObject.SetActive(false);
+        carta4.gameObject.SetActive(false);
+        carta5.gameObject.SetActive(false);
+        carta6.gameObject.SetActive(false);
 
+        cartaVirada3.gameObject.SetActive(false);
+        cartaVirada4.gameObject.SetActive(false);
+        cartaVirada5.gameObject.SetActive(false);
+        cartaVirada6.gameObject.SetActive(false);
+    }
     void desenhaTela(Jogador atual)
     {
+        limpaTela();
         CartaController c1 = carta1.GetComponent<CartaController>();
         c1.setSprite(atual.getMaoJogador()[0] - 1);
 
@@ -275,6 +283,8 @@ public class GameController : MonoBehaviour
         if (atual.getMaoJogador().Count == 3)
         {
             carta3.gameObject.SetActive(true);
+            
+
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
         }
@@ -282,6 +292,7 @@ public class GameController : MonoBehaviour
         {
             carta3.gameObject.SetActive(true);
             carta4.gameObject.SetActive(true);
+
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
             CartaController c4 = carta4.GetComponent<CartaController>();
@@ -292,12 +303,14 @@ public class GameController : MonoBehaviour
             carta3.gameObject.SetActive(true);
             carta4.gameObject.SetActive(true);
             carta5.gameObject.SetActive(true);
+
             CartaController c3 = carta3.GetComponent<CartaController>();
             c3.setSprite(atual.getMaoJogador()[2] - 1);
             CartaController c4 = carta4.GetComponent<CartaController>();
             c4.setSprite(atual.getMaoJogador()[3] - 1);
             CartaController c5 = carta5.GetComponent<CartaController>();
             c5.setSprite(atual.getMaoJogador()[4] - 1);
+
         }
         else if (atual.getMaoJogador().Count == 6)
         {
@@ -314,20 +327,12 @@ public class GameController : MonoBehaviour
             CartaController c6 = carta6.GetComponent<CartaController>();
             c6.setSprite(atual.getMaoJogador()[5] - 1);
         }
-        else
-        {
-            carta3.gameObject.SetActive(false);
-            carta4.gameObject.SetActive(false);
-            carta5.gameObject.SetActive(false);
-            carta6.gameObject.SetActive(false);
-        }
 
         Jogador oponente = (turn == 0 ? player2 : player1);
 
         if (oponente.getMaoJogador().Count == 3)
         {
             cartaVirada3.gameObject.SetActive(true);
-
         }
         else if (oponente.getMaoJogador().Count == 4)
         {
@@ -346,26 +351,13 @@ public class GameController : MonoBehaviour
         {
             cartaVirada3.gameObject.SetActive(true);
             cartaVirada4.gameObject.SetActive(true);
+            cartaVirada5.gameObject.SetActive(true);
             cartaVirada6.gameObject.SetActive(true);
-        }
-        else
-        {
-            cartaVirada3.gameObject.SetActive(false);
-            cartaVirada4.gameObject.SetActive(false);
-            cartaVirada5.gameObject.SetActive(false);
-            cartaVirada6.gameObject.SetActive(false);
         }
         // Debug.Log("Mao do jogador " + atual.getMaoJogador().Count);
     }
 
 
-    private void offTrunfoinv(GameObject obj)
-    {
-        foreach (Transform filho in obj.transform)
-        {
-            filho.gameObject.SetActive(false);
-        }
-    }
 
     private void onTrunfoinv(GameObject obj)
     {
@@ -377,14 +369,14 @@ public class GameController : MonoBehaviour
 
     private void resetarCena()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(cena);
     }
 
 
-    public Jogador GetpAtual() { return this.atual; }
+    public Jogador GetpAtual() { return (turn == 0 ? player1 : player2); }
 
     public Baralho GetBaralho() { return this.baralho; }
 
-    public Jogador GetOponente() { return this.oponente; }
+    public Jogador GetOponente() { return (turn == 0 ? player2 : player1); }
 
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4997001502577420424}
   - component: {fileID: 2007690345781721184}
   - component: {fileID: 3417020249703521543}
+  - component: {fileID: 1896160189652351955}
   m_Layer: 5
   m_Name: CompraUm
   m_TagString: Untagged
@@ -192,3 +193,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1896160189652351955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547393187043911767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eff140b25d64601aabc6ba32245d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,12 +1,8 @@
-using System;
-using System.Linq;
-using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Jogador
 {
-    private System.Random random;
     private List<int> maoJogador;
     private List<Trunfo> inventario;
     private int pontosDeVida;
@@ -14,22 +10,6 @@ public class Jogador
     private int soma;
     private bool carta3;
 
-    private void adicionaTrunfosAleatorios(int quantidade)
-    {
-        Type tipoBase = typeof(Trunfo);
-        for (int i = 0; i < quantidade; i += 1)
-        {
-            var classesDerivadas = Assembly.GetAssembly(tipoBase).GetTypes().Where(type => type.IsSubclassOf(tipoBase) && !type.IsAbstract).ToList();
-
-            if (classesDerivadas.Any())
-            {
-                Type tipoTrunfo = classesDerivadas[random.Next(classesDerivadas.Count())];
-
-                Trunfo instanciaTrunfo = (Trunfo)Activator.CreateInstance(tipoTrunfo);
-                inventario.Add(instanciaTrunfo);
-            }
-        }
-    }
     public Jogador(Baralho baralho)
     {
         inventario = new List<Trunfo>();
@@ -38,8 +18,6 @@ public class Jogador
         pontosDeVida = 10;
         betAtual = 1;
         soma = 0;
-        random = new System.Random();
-        adicionaTrunfosAleatorios(10);
         insereCarta(baralho.CompraCarta());
         insereCarta(baralho.CompraCarta());
 
@@ -58,15 +36,11 @@ public class Jogador
     public void setVida(int val) { pontosDeVida = val; }
 
     public List<int> getMaoJogador() { return maoJogador; }
-    public List<Trunfo> getInventarioJogador() { return inventario; }
-
-    public void insereInventario(Trunfo trunfo) { inventario.Add(trunfo); }
 
     public void insereCarta(int val)
     {
         if (val == -1)
         {
-            Debug.Log("Baralho Vazio");
             return;
         }
         maoJogador.Add(val);
@@ -90,12 +64,6 @@ public class Jogador
     {
         if (maoJogador.Count < 6 && Input.GetKeyDown(KeyCode.F))
         {
-            int valor = random.Next(1, 7);
-            if (valor == 6)
-            {
-                Debug.Log("Trunfo Comprado");
-                adicionaTrunfosAleatorios(1);
-            }
             insereCarta(baralho.CompraCarta());
             return true;
         }
@@ -114,7 +82,7 @@ public class Jogador
 
     public void usaTrunfo(Trunfo trunfo, Jogador Adversario, Baralho baralho)
     {
-        // trunfo.efeitoTrunfo(baralho, this ,Adversario);
+        trunfo.efeitoTrunfo(baralho, this ,Adversario);
     }
 
     public int calculaVida()
@@ -132,5 +100,12 @@ public class Jogador
     }
 
     public int getSoma() { return soma; }
+
+    public void reseta(Baralho baralho)
+    {
+        maoJogador.Clear();
+        insereCarta(baralho.CompraCarta());
+        insereCarta(baralho.CompraCarta());
+    }
 
 }
