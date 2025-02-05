@@ -5244,6 +5244,7 @@ GameObject:
   - component: {fileID: 1292365218}
   - component: {fileID: 1292365220}
   - component: {fileID: 1292365219}
+  - component: {fileID: 1292365221}
   m_Layer: 5
   m_Name: StatusP2
   m_TagString: Untagged
@@ -5308,6 +5309,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292365217}
   m_CullTransparentMesh: 1
+--- !u!114 &1292365221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292365217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a7dcf6e7930f54ba5183492b98d9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jogador: 2
+  spritePanel: {fileID: 1292365219}
+  fullLifeSprite: {fileID: -4202105623281388214, guid: 1164aecf053897542867b990c1c7b5cb, type: 3}
+  halfLifeSprite: {fileID: 6399088407475816502, guid: 24ae871862962b04b9eb0c915d404573, type: 3}
+  emptyLifeSprite: {fileID: 6995403040894575059, guid: 23ad243c2cdb0d94690021a715fbc2fa, type: 3}
+  gameController: {fileID: 2065454505}
 --- !u!1 &1292621473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4547393187043911767, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}
@@ -6069,6 +6088,7 @@ GameObject:
   - component: {fileID: 1460974302}
   - component: {fileID: 1460974304}
   - component: {fileID: 1460974303}
+  - component: {fileID: 1460974305}
   m_Layer: 5
   m_Name: StatusP1
   m_TagString: Untagged
@@ -6133,6 +6153,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460974301}
   m_CullTransparentMesh: 1
+--- !u!114 &1460974305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460974301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a7dcf6e7930f54ba5183492b98d9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jogador: 1
+  spritePanel: {fileID: 1460974303}
+  fullLifeSprite: {fileID: -4202105623281388214, guid: 1164aecf053897542867b990c1c7b5cb, type: 3}
+  halfLifeSprite: {fileID: 6399088407475816502, guid: 24ae871862962b04b9eb0c915d404573, type: 3}
+  emptyLifeSprite: {fileID: 6995403040894575059, guid: 23ad243c2cdb0d94690021a715fbc2fa, type: 3}
+  gameController: {fileID: 2065454505}
 --- !u!4 &1462603306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4976070993133363909, guid: 3cf4c6e6b6358214a9954ea7c334a07b, type: 3}
@@ -7760,8 +7798,6 @@ MonoBehaviour:
   zoomSpeed: 1
   minZoom: 2
   maxZoom: 7
-  minBounds: {x: 0, y: 0}
-  maxBounds: {x: 0, y: 0}
 --- !u!224 &1997619278 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5073875633857155890, guid: 0bbeac30a6a4d554689e82400542738f, type: 3}

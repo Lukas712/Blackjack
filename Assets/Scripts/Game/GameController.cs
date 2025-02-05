@@ -379,4 +379,7 @@ public class GameController : MonoBehaviour
 
     public Jogador GetOponente() { return (turn == 0 ? player2 : player1); }
 
+    public int getLifePlayer(){return (turn == 0 ? player1.getVida() : player2.getVida());}
+    public int getLifeAdversario(){return (turn == 0 ? player2.getVida() : player1.getVida());}
+
 }
